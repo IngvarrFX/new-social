@@ -1,0 +1,24 @@
+.Dialogs {
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+}
+
+.DialogsItem {
+    padding: 10px;
+}
+
+.Dialog {
+    margin-bottom: 10px;
+}
+
+.Messages {
+    padding: 10px;
+}
+
+.Message {
+
+}
+
+.Active {
+    color: white;
+}

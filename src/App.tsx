@@ -10,6 +10,7 @@ import {News} from "./News";
 import {Settings} from "./Settings";
 
 function App() {
+
     return (
         <div className="App-wrapper">
             <Header/>
