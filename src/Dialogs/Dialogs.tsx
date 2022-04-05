@@ -1,7 +1,8 @@
 import React from "react";
-import styles from "./Dialogs.module.css";
-import {NavLink} from "react-router-dom";
+import {NavLink, Route, Routes} from "react-router-dom";
+import {Dialog} from "./Dialog";
 
+import styles from "./Dialogs.module.css";
 
 type DialogsType = {
     name: string
@@ -10,8 +11,7 @@ type DialogsType = {
 
 export const Dialogs = () => {
 
-
-    const dialogs:DialogsType[] = [
+    const dialogs: DialogsType[] = [
         {
             name: "Igor", dialogs: [
                 "Hello", "My name is Igor", "How are you feel?",
@@ -30,29 +30,26 @@ export const Dialogs = () => {
 
     ]
 
-
     return (
         <div className={styles.Dialogs}>
             <div className={styles.DialogsItem}>
-                    {
-                        dialogs.map((dialog, index)=>
-                            <div className={styles.Dialog} key={index}>
+                {
+                    dialogs.map((dialog, index) =>
+                        <div className={styles.Dialog} key={index}>
                             <NavLink
-                                to={`/${dialog.name.toLowerCase()}`}
-                                className={(navData)=> navData.isActive ? styles["Active"] : "" }
+                                to={`/dialogs/${dialog.name.toLowerCase()}`}
+                                className={(navData) => navData.isActive ? styles["Active"] : ""}
                             >{dialog.name}</NavLink>
-                            </div>)
-                    }
+                        </div>)
+                }
             </div>
-
             <div className={styles.Messages}>
+                <Routes>
                     {
-                        dialogs.map((dialog) => {
-                            return dialog.dialogs.map((message,index)=> {
-                                return <div key={index} className={styles.Message}>{message}</div>
-                            })
-                        })
+                        dialogs.map((dialog, index) => <Route key={index} path={`/${dialog.name.toLowerCase()}`}
+                                                              element={<Dialog messages={dialog.dialogs}/>}/>)
                     }
+                </Routes>
             </div>
         </div>
     );

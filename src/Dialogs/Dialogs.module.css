@@ -10,15 +10,18 @@
 .Dialog {
     margin-bottom: 10px;
 }
-
-.Messages {
-    padding: 10px;
+.Dialog a {
+    text-decoration: none;
 }
 
-.Message {
-
+.Dialog a:hover {
+    color: gold;
 }
 
 .Active {
     color: white;
+}
+
+.Messages {
+    padding: 10px;
 }
