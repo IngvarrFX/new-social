@@ -1,18 +1,25 @@
-import React from "react";
-import styles from "NavBar.module.css";
+import React, {useState} from "react";
+import styles from "./NavBar.module.css";
+import {Link} from "react-router-dom";
 
 export const NavBar = () => {
 
-    const query = window.location.href;
+    const [active, setActive] = useState("")
 
-    console.log(query)
-    return (<nav className="NavBar">
-            <div className="Links">
-                <a href="Profile">Profile</a>
-                <a href="Messages">Messages</a>
-                <a href="Dialogs">Dialogs</a>
-                <a href="News">News</a>
-                <a href="Settings">Settings</a>
+
+    const pages = ["Profile", "Messages", "Dialogs", "News", "Settings"]
+
+    const onClickHandle = (e: React.MouseEvent<HTMLAnchorElement>, page: string) => {
+        setActive(page);
+    }
+
+    return (<nav className={styles.NavBar}>
+            <div className={styles.Links}>
+                {pages.map((page, index) => <Link
+                    className={page === active ? styles[page] : ""}
+                    onClick={(e) => onClickHandle(e, page)}
+                    key={index}
+                    to={`/${page.toLowerCase()}`}>{page}</Link>)}
             </div>
         </nav>
     );

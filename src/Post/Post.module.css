@@ -1,0 +1,9 @@
+.PostWrapper{
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.PostWrapper img {
+    width: 50px;
+    border-radius: 20%;
+}

@@ -1,9 +1,10 @@
 import React from "react";
-import styles from "Header.module.css";
+import styles from "./Header.module.css";
+import {Logo} from "../icons/Logo";
 
 export const Header = () => {
-    return (<header className="Header">
-            <img src="https://e7.pngegg.com/pngimages/359/743/png-clipart-logo-community-text-logo.png" alt="logo"/>
+    return (<header className={styles.Header}>
+            <Logo/>
         </header>
     );
 };

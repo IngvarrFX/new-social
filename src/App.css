@@ -10,41 +10,9 @@
     grid-gap: 10px;
 }
 
-
-.Header {
-    grid-area: header;
-    background-color: red;
-}
-
-.Header img {
-    width: 20px;
-}
-
-.NavBar {
-    background-color: orange;
-    grid-area: nav;
-}
-
-
-.Content {
+.App-wrapper-content {
+    height: 80vh;
     background-color: blueviolet;
     grid-area: content;
 }
 
-.Content img {
-    width: 100%;
-}
-
-.Links {
-    display: flex;
-    flex-direction: column;
-}
-
-.Links a {
-    text-decoration: none;
-    color: #fff;
-}
-
-.Links a:hover {
-    color: red;
-}

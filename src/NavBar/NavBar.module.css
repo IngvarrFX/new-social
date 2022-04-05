@@ -1,0 +1,39 @@
+.NavBar {
+    background-color: orange;
+    grid-area: nav;
+}
+
+
+.Links {
+    display: flex;
+    flex-direction: column;
+}
+
+.Links a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.Links a:hover {
+    color: red;
+}
+
+.Profile {
+    color: blue!important;
+}
+
+.Messages {
+    color: blue!important;
+}
+
+.Dialogs {
+    color: blue!important;
+}
+
+.News {
+    color: blue!important;
+}
+
+.Settings {
+    color: blue!important;
+}
