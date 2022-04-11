@@ -1,8 +1,8 @@
 import React from "react";
-import {Routes, Route, useParams} from "react-router-dom";
+import {Route, Routes} from "react-router-dom";
 import {Header} from "./Header";
 import {NavBar} from "./NavBar";
-import {Profile} from "./Main";
+import {Profile} from "./Profile";
 import {Dialogs} from "./Dialogs";
 import {Messages} from "./Messages";
 import {News} from "./News";
