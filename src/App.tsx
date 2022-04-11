@@ -10,9 +10,6 @@ import {Settings} from "./Settings";
 import "./App.css";
 
 function App() {
-    const obj = useParams()
-
-    console.log(obj)
 
 
     return (

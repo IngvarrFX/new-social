@@ -1,29 +1,37 @@
 import React from "react";
 import {NavLink, Route, Routes} from "react-router-dom";
-import {Dialog} from "./Dialog";
+import {Message} from "./Message";
 
 import styles from "./Dialogs.module.css";
+import {DialogItem} from "./DialogItem";
 
 type DialogsType = {
+    id: number
     name: string
-    dialogs: Array<string>
+    messages: Array<string>
 }
 
 export const Dialogs = () => {
 
     const dialogs: DialogsType[] = [
         {
-            name: "Igor", dialogs: [
+            id: 1,
+            name: "Igor",
+            messages: [
                 "Hello", "My name is Igor", "How are you feel?",
             ]
         },
         {
-            name: "Oxi", dialogs: [
+            id: 2,
+            name: "Oxi",
+            messages: [
                 "Hi", "My name is Oxi", "I am so happy!",
             ]
         },
         {
-            name: "Marcy", dialogs: [
+            id: 3,
+            name: "Marcy",
+            messages: [
                 "Meow", "I am hungry", "Let's go play",
             ]
         },
@@ -36,18 +44,15 @@ export const Dialogs = () => {
                 {
                     dialogs.map((dialog, index) =>
                         <div className={styles.Dialog} key={index}>
-                            <NavLink
-                                to={`/dialogs/${dialog.name.toLowerCase()}`}
-                                className={(navData) => navData.isActive ? styles["Active"] : ""}
-                            >{dialog.name}</NavLink>
+                            <DialogItem id={dialog.id} name={dialog.name}/>
                         </div>)
                 }
             </div>
             <div className={styles.Messages}>
                 <Routes>
                     {
-                        dialogs.map((dialog, index) => <Route key={index} path={`/${dialog.name.toLowerCase()}`}
-                                                              element={<Dialog messages={dialog.dialogs}/>}/>)
+                        dialogs.map((dialog, index) => <Route key={index} path={`/${dialog.id}`}
+                                                              element={<Message messages={dialog.messages}/>}/>)
                     }
                 </Routes>
             </div>
