@@ -4,7 +4,7 @@ import {NavLink} from "react-router-dom";
 
 export const NavBar = () => {
 
-    const pages = ["Profile", "Messages", "Dialogs", "News", "Settings"]
+    const pages = ["Profile", "Messages","Music", "News", "Settings"]
 
 
     return (<nav className={styles.NavBar}>

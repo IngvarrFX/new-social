@@ -4,20 +4,18 @@ import {Header} from "./Header";
 import {NavBar} from "./NavBar";
 import {Profile} from "./Profile";
 import {Dialogs} from "./Dialogs";
-import {Messages} from "./Messages";
 import {News} from "./News";
 import {Settings} from "./Settings";
 import "./App.css";
-import {DialogsType, PostType} from "./types";
+import {stateType} from "./redux/state";
 
 
 type AppPropsType = {
-    dialogs: DialogsType[]
-    posts: PostType[]
+    state: stateType
 }
 
 function App(props: AppPropsType) {
-    const {dialogs, posts} = props;
+    const {profilePage, messagePage} = props.state;
 
 
     return (
@@ -26,10 +24,10 @@ function App(props: AppPropsType) {
             <NavBar/>
             <div className="App-wrapper-content">
                 <Routes>
-                    <Route path="/" element={<Profile posts={posts}/>}/>
-                    <Route path="/profile" element={<Profile posts={posts}/>}/>
-                    <Route path="/dialogs/*" element={<Dialogs dialogs={dialogs}/>}/>
-                    <Route path="/messages" element={<Messages/>}/>
+                    <Route path="/" element={<Profile posts={profilePage.posts}/>}/>
+                    <Route path="/profile" element={<Profile posts={profilePage.posts}/>}/>
+                    <Route path="/messages/*" element={<Dialogs dialogs={messagePage.dialogs}/>}/>
+                    <Route path="/music" element={<h1>Music</h1>}/>
                     <Route path="/news" element={<News/>}/>
                     <Route path="/settings" element={<Settings/>}/>
                     <Route path="*" element={<h1>404</h1>}/>
