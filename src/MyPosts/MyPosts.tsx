@@ -2,14 +2,20 @@ import React from "react";
 import styles from "./MyPosts.module.css"
 import {NewPost} from "../NewPost";
 import {Post} from "../Post";
+import {PostType} from "../types";
 
-export const MyPosts = () => {
+type MyPostsPropsType = {
+    posts: PostType[]
+}
+
+export const MyPosts = (props: MyPostsPropsType) => {
+    const {posts} = props;
+    const postElements = posts.map((post, index) => <Post key={index} text={post.message} likes={post.likes}/>)
     return (
         <div>
             <h2 className={styles.HeaderPosts}>My posts</h2>
             <NewPost/>
-            <Post text={"Hello world!"} likes={5}/>
-            <Post text={"My first post!"} likes={3}/>
+            {postElements}
         </div>
     );
 };

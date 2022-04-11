@@ -8,8 +8,16 @@ import {Messages} from "./Messages";
 import {News} from "./News";
 import {Settings} from "./Settings";
 import "./App.css";
+import {DialogsType, PostType} from "./types";
 
-function App() {
+
+type AppPropsType = {
+    dialogs: DialogsType[]
+    posts: PostType[]
+}
+
+function App(props: AppPropsType) {
+    const {dialogs, posts} = props;
 
 
     return (
@@ -18,9 +26,9 @@ function App() {
             <NavBar/>
             <div className="App-wrapper-content">
                 <Routes>
-                    <Route path="/" element={<Profile/>}/>
-                    <Route path="/profile" element={<Profile/>}/>
-                    <Route path="/dialogs/*" element={<Dialogs/>}/>
+                    <Route path="/" element={<Profile posts={posts}/>}/>
+                    <Route path="/profile" element={<Profile posts={posts}/>}/>
+                    <Route path="/dialogs/*" element={<Dialogs dialogs={dialogs}/>}/>
                     <Route path="/messages" element={<Messages/>}/>
                     <Route path="/news" element={<News/>}/>
                     <Route path="/settings" element={<Settings/>}/>
