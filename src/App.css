@@ -11,7 +11,7 @@
 }
 
 .App-wrapper-content {
-    height: 80vh;
+    height: 100vh;
     background-color: blueviolet;
     grid-area: content;
 }

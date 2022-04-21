@@ -1,10 +1,11 @@
 export type DialogsType = {
-    id: number
+    id: string
     name: string
     messages: Array<string>
 }
 
 export type PostType = {
+    id: string
     message: string
     likes: number
 }
