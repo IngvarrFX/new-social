@@ -3,40 +3,23 @@ import {Route, Routes} from "react-router-dom";
 import {Header} from "./Header";
 import {NavBar} from "./NavBar";
 import {Profile} from "./Profile";
-import {Dialogs} from "./Dialogs";
 import {News} from "./News";
 import {Settings} from "./Settings";
+import UsersConnect from './UsersPage/UsersContainer';
 import "./App.css";
-import {stateType} from "./redux/state";
+import DialogsConnect from "./Containers/DialogsContainer/DialogsContainer";
 
-
-type AppPropsType = {
-    state: stateType
-    dispatch:(action: {type: string, payload: any})=> void
-}
-
-function App(props: AppPropsType) {
-    const {profilePage, messagePage} = props.state;
-    const {dispatch} = props;
-
-
+function App() {
     return (
         <div className="App-wrapper">
             <Header/>
             <NavBar/>
             <div className="App-wrapper-content">
                 <Routes>
-                    <Route path="/"
-                           element={<Profile
-                               posts={profilePage.posts}
-                               dispatch={dispatch}
-                               value={profilePage.newPostText}/>}/>
-                    <Route path="/profile"
-                           element={<Profile
-                               posts={profilePage.posts}
-                               dispatch={dispatch}
-                               value={profilePage.newPostText}/>}/>
-                    <Route path="/messages/*" element={<Dialogs dialogs={messagePage.dialogs} dispatch={dispatch} value={messagePage.newMessage}/>}/>
+                    <Route path="/" element={<Profile/>}/>
+                    <Route path="/profile" element={<Profile/>}/>
+                    <Route path="/messages/*" element={<DialogsConnect/>}/>
+                    <Route path="users" element={<UsersConnect/>}/>
                     <Route path="/music" element={<h1>Music</h1>}/>
                     <Route path="/news" element={<News/>}/>
                     <Route path="/settings" element={<Settings/>}/>

@@ -2,23 +2,26 @@ import React, {ChangeEvent} from "react";
 import styles from "./Textarea.module.css";
 
 type TextareaPropsType = {
-    callBack: () => void
-    dispatch: (action: { type: string, payload: { value: string } }) => void
+    addCallback: () => void
     value: string
-    actionCreator:(value: string)=> {type:string, payload:any}
+    newText: (value: string) => void
 }
 
 export const Textarea = (props: TextareaPropsType) => {
 
-    const {callBack, dispatch,actionCreator, value} = props;
+    const {addCallback, newText, value} = props;
 
     const onChangeHandle = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        dispatch(actionCreator(e.currentTarget.value))
+        newText(e.currentTarget.value);
+    };
+
+    const addNewPostHandle = () => {
+        addCallback();
     }
     return (
         <div className={styles.wrapper}>
             <textarea onChange={onChangeHandle} value={value}/>
-            <button disabled={!value} onClick={callBack}>add message</button>
+            <button onClick={addNewPostHandle}>add message</button>
         </div>
     );
 };
