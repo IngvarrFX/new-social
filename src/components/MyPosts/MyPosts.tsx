@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./MyPosts.module.css"
 import {NewPost} from "../NewPost";
 import {Post} from "../Post";
-import {PostType} from "../types";
+import {PostType} from "../../types";
 
 type MyPostsPropsType = {
     posts: PostType[]

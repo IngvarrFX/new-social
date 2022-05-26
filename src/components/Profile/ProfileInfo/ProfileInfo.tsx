@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./ProfileInfo.module.css";
-import img from "../../assets/mainBackground.jpg";
+import img from "../../../assets/mainBackground.jpg";
 
 export const ProfileInfo = () => {
     return (

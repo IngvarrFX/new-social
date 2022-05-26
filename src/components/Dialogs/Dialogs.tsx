@@ -5,7 +5,7 @@ import {Message} from "./Message";
 import styles from "./Dialogs.module.css";
 import {DialogItem} from "./DialogItem";
 import {Textarea} from "../Textarea";
-import {DialogsType} from "../types";
+import {DialogsType} from "../../types";
 
 type DialogsPropsType = {
     dialogs: DialogsType[] | undefined;

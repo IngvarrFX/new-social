@@ -1,9 +1,9 @@
 import React from "react";
 import {Dialogs} from "../../Dialogs";
 import {connect, ConnectedProps} from "react-redux";
-import {AppStateType, DispatchType} from "../../redux/redux-store";
+import {AppStateType, DispatchType} from "../../../redux/redux-store";
 import {useParams} from "react-router-dom";
-import {addMessageAC, newMessageTextAC} from "../../redux/reducers/dialogsReducer/actions";
+import {addMessageAC, newMessageTextAC} from "../../../redux/reducers/dialogsReducer/actions";
 
 type DialogsPropsType = PropsFromRedux
 

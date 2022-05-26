@@ -1,6 +1,6 @@
-import {AppStateType, DispatchType} from "../redux/redux-store";
-import {UsersStateType, UserType} from "../redux/reducers/usersReducer/types";
-import {followAC, setUsersAC, unFollowAC} from "../redux/reducers/usersReducer/actions";
+import {AppStateType, DispatchType} from "../../redux/redux-store";
+import {UsersStateType, UserType} from "../../redux/reducers/usersReducer/types";
+import {followAC, setUsersAC, unFollowAC} from "../../redux/reducers/usersReducer/actions";
 import {connect, ConnectedProps} from "react-redux";
 import {UsersPage} from "./UsersPage";
 

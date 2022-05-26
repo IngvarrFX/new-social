@@ -1,8 +1,8 @@
 import React from "react";
 import {MyPosts} from "../MyPosts";
 import {connect, ConnectedProps} from "react-redux";
-import {AppStateType, DispatchType} from "../redux/redux-store";
-import {addPostAC, newPostTextAC} from "../redux/reducers/profileReducer/actions";
+import {AppStateType, DispatchType} from "../../redux/redux-store";
+import {addPostAC, newPostTextAC} from "../../redux/reducers/profileReducer/actions";
 
 type MyPostsPropsType  = PropsFromRedux
 
