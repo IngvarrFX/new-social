@@ -11,6 +11,7 @@ beforeEach(() => {
             {id: v1(), message: "My first post!", likes: 5},
         ],
         newPostText: "",
+        userProfile: null,
     };
 })
 
