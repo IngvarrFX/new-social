@@ -1,7 +1,10 @@
 import {UsersActionsType, UsersStateType} from "./types";
 
 const initialState: UsersStateType = {
-    users: []
+    users: [],
+    totalUsersCount: 0,
+    currentPage: 1,
+    pageSize: 5,
 };
 
 export const usersReducer = (state: UsersStateType = initialState, action: UsersActionsType): UsersStateType => {
@@ -19,7 +22,13 @@ export const usersReducer = (state: UsersStateType = initialState, action: Users
             }
         }
         case "SET_USERS": {
-            return {...state, users: [...state.users, ...action.payload.users]}
+            return {...state, users: [...action.payload.users]}
+        }
+        case "SET_TOTAL_USERS_COUNT": {
+            return {...state, totalUsersCount: action.payload.count}
+        }
+        case "SET_CURRENT_PAGE": {
+            return {...state, currentPage: action.payload.pageNumber}
         }
         default: {
             return state;

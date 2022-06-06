@@ -14,18 +14,44 @@ export class UsersPage extends React.Component<PropsFromRedux, MyState> {
     }
 
     componentDidMount() {
-        axios.get("https://social-network.samuraijs.com/api/1.0/users").then((res: AxiosResponse) => this.props.setUsers(res.data.items));
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then((res: AxiosResponse) => {
+            this.props.setUsers(res.data.items);
+            this.props.setTotalCountUsers(res.data.totalCount);
+        });
+    }
+
+    onChangeCurrentPage = (pageNumber: number) => {
+        this.props.setCurrentPage(pageNumber)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`).then((res: AxiosResponse) => {
+            this.props.setUsers(res.data.items);
+        });
     }
 
     render() {
+        const {users, totalUsersCount, pageSize, currentPage} = this.props;
+
+        const pagesCount = Math.ceil(totalUsersCount / pageSize);
+
+        const pages = Array.from({length: pagesCount}, (_, i) => i + 1);
+
+        if(!users){
+            return <span>Loading...</span>
+        }
         return (
             <div className={styles.wrapper}>
-                {this.props.users.map(user => {
+                <div>
+                    {pages.map((page) => <span
+                        key={page}
+                        className={currentPage === page ? styles.currentPage : styles.pages}
+                        onClick={() => this.onChangeCurrentPage(page)}
+                    >{page}</span>)}
+                </div>
+                {users.map(user => {
                     return <div className={styles.userBlock} key={user.id}>
                         <div className={styles.avaBlock}>
                             <img className={styles.userPhoto}
                                  src={user.photos.small ? user.photos.small : "https://w7.pngwing.com/pngs/601/312/png-transparent-social-media-avatar-graphy-digital-media-profile-blue-text-logo.png"}
-                                 alt="user photo"/>
+                                 alt="user avatar"/>
                             <button
                                 onClick={() => this.subscribeHandle(user.id, user.followed)}>{user.followed ? "follow" : "unfollow"}</button>
                         </div>

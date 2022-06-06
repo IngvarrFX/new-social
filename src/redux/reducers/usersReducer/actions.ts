@@ -1,9 +1,18 @@
-import {FollowACType, SetUsersACType, UnFollowACType, UserType} from "./types";
+import {
+    FollowACType,
+    SetCurrentPageACType,
+    SetTotalUsersCountACType,
+    SetUsersACType,
+    UnFollowACType,
+    UserType
+} from "./types";
 
 
 export const FOLLOW = "FOLLOW";
 export const UNFOLLOW = "UNFOLLOW";
 export const SET_USERS = "SET_USERS";
+export const SET_TOTAL_USERS_COUNT = "SET_TOTAL_USERS_COUNT";
+export const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
 
 export const followAC = (id: number): FollowACType => {
     return {
@@ -20,6 +29,18 @@ export const unFollowAC = (id: number): UnFollowACType => {
 export const setUsersAC = (users: UserType[]): SetUsersACType => {
     return {
         type: SET_USERS, payload: {users},
+    }
+};
+
+export const setTotalCountAC = (count: number): SetTotalUsersCountACType => {
+    return {
+        type: SET_TOTAL_USERS_COUNT, payload: {count},
+    }
+};
+
+export const setCurrentPageAC = (pageNumber: number): SetCurrentPageACType => {
+    return {
+        type: SET_CURRENT_PAGE, payload: {pageNumber},
     }
 };
 

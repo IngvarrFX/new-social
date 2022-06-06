@@ -22,7 +22,10 @@ beforeEach(() => {
                 status: 'Hello i am superman',
                 uniqueUrlName: null,
             }
-        ]
+        ],
+        totalUsersCount: 30,
+        currentPage: 1,
+        pageSize: 5,
     };
 })
 

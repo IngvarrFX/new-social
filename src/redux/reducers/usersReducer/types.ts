@@ -1,7 +1,12 @@
-import {FOLLOW, SET_USERS, UNFOLLOW} from "./actions";
+import {FOLLOW, SET_CURRENT_PAGE, SET_TOTAL_USERS_COUNT, SET_USERS, UNFOLLOW} from "./actions";
 
 
-export type UsersActionsType = FollowACType | UnFollowACType | SetUsersACType
+export type UsersActionsType =
+    FollowACType
+    | UnFollowACType
+    | SetUsersACType
+    | SetTotalUsersCountACType
+    | SetCurrentPageACType
 
 export type FollowACType = {
     type: typeof FOLLOW
@@ -24,8 +29,25 @@ export type SetUsersACType = {
     }
 };
 
+export type SetTotalUsersCountACType = {
+    type: typeof SET_TOTAL_USERS_COUNT
+    payload: {
+        count: number
+    }
+};
+
+export type SetCurrentPageACType = {
+    type: typeof SET_CURRENT_PAGE
+    payload: {
+        pageNumber: number
+    }
+};
+
 export type UsersStateType = {
     users: UserType[] | []
+    totalUsersCount: number
+    currentPage: number
+    pageSize: number
 }
 
 export type UserType = {
