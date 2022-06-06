@@ -1,5 +1,5 @@
 import {usersReducer} from "../usersReducer";
-import {followAC, unFollowAC} from "../usersReducer/actions";
+import {followAC, setCurrentPageAC, setTotalCountAC, unFollowAC} from "../usersReducer/actions";
 import {UsersStateType} from "../usersReducer/types";
 
 let initialState: UsersStateType;
@@ -45,3 +45,20 @@ test("should be unfollowed", () => {
     expect(newState.users[1].followed).toBeFalsy();
     expect(newState.users[1].name).toBe("user2");
 })
+
+
+test("should set total count users", () => {
+
+    const newState = usersReducer(initialState, setTotalCountAC(300));
+
+    expect(newState.totalUsersCount).toBe(300);
+})
+
+
+test("should set current page", () => {
+
+    const newState = usersReducer(initialState, setCurrentPageAC(3));
+
+    expect(newState.currentPage).toBe(3);
+})
+
