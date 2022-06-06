@@ -5,6 +5,7 @@ const initialState: UsersStateType = {
     totalUsersCount: 0,
     currentPage: 1,
     pageSize: 5,
+    isFetching: false,
 };
 
 export const usersReducer = (state: UsersStateType = initialState, action: UsersActionsType): UsersStateType => {
@@ -29,6 +30,9 @@ export const usersReducer = (state: UsersStateType = initialState, action: Users
         }
         case "SET_CURRENT_PAGE": {
             return {...state, currentPage: action.payload.pageNumber}
+        }
+        case "TOGGLE_IS_FETCHING": {
+            return {...state, isFetching: action.payload.isFetching}
         }
         default: {
             return state;

@@ -19,7 +19,7 @@ export const Users = (props: UsersPropsType) => {
 
     const pages = Array.from({length: pagesCount}, (_, i) => i + 1);
 
-    if (!users) {
+    if (!users.length) {
         return <span>Loading...</span>
     }
     return (<div className={styles.wrapper}>

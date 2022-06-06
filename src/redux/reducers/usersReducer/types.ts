@@ -1,4 +1,4 @@
-import {FOLLOW, SET_CURRENT_PAGE, SET_TOTAL_USERS_COUNT, SET_USERS, UNFOLLOW} from "./actions";
+import {FOLLOW, SET_CURRENT_PAGE, SET_TOTAL_USERS_COUNT, SET_USERS, TOGGLE_IS_FETCHING, UNFOLLOW} from "./actions";
 
 
 export type UsersActionsType =
@@ -7,6 +7,7 @@ export type UsersActionsType =
     | SetUsersACType
     | SetTotalUsersCountACType
     | SetCurrentPageACType
+    | ToggleIsFetchingACType
 
 export type FollowACType = {
     type: typeof FOLLOW
@@ -43,11 +44,19 @@ export type SetCurrentPageACType = {
     }
 };
 
+export type ToggleIsFetchingACType = {
+    type: typeof TOGGLE_IS_FETCHING
+    payload: {
+        isFetching: boolean
+    }
+};
+
 export type UsersStateType = {
     users: UserType[] | []
     totalUsersCount: number
     currentPage: number
     pageSize: number
+    isFetching: boolean
 }
 
 export type UserType = {

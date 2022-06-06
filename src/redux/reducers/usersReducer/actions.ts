@@ -2,7 +2,7 @@ import {
     FollowACType,
     SetCurrentPageACType,
     SetTotalUsersCountACType,
-    SetUsersACType,
+    SetUsersACType, ToggleIsFetchingACType,
     UnFollowACType,
     UserType
 } from "./types";
@@ -13,6 +13,7 @@ export const UNFOLLOW = "UNFOLLOW";
 export const SET_USERS = "SET_USERS";
 export const SET_TOTAL_USERS_COUNT = "SET_TOTAL_USERS_COUNT";
 export const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
+export const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING";
 
 export const followAC = (id: number): FollowACType => {
     return {
@@ -41,6 +42,12 @@ export const setTotalCountAC = (count: number): SetTotalUsersCountACType => {
 export const setCurrentPageAC = (pageNumber: number): SetCurrentPageACType => {
     return {
         type: SET_CURRENT_PAGE, payload: {pageNumber},
+    }
+};
+
+export const toggleIsFetchingAC = (isFetching: boolean): ToggleIsFetchingACType => {
+    return {
+        type: TOGGLE_IS_FETCHING, payload: {isFetching},
     }
 };
 
