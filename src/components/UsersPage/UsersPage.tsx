@@ -51,7 +51,7 @@ export class UsersPage extends React.Component<PropsFromRedux, MyState> {
                         <div className={styles.avaBlock}>
                             <img className={styles.userPhoto}
                                  src={user.photos.small ? user.photos.small : "https://w7.pngwing.com/pngs/601/312/png-transparent-social-media-avatar-graphy-digital-media-profile-blue-text-logo.png"}
-                                 alt="user avatar"/>
+                                 alt="avatar"/>
                             <button
                                 onClick={() => this.subscribeHandle(user.id, user.followed)}>{user.followed ? "follow" : "unfollow"}</button>
                         </div>
