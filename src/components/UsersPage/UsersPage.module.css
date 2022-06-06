@@ -24,6 +24,10 @@
     margin-right: 10px;
 }
 
+.avaBlock a:hover {
+    cursor: pointer;
+}
+
 .userBlock {
     display: flex;
     margin-bottom: 40px;
