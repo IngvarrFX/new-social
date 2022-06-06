@@ -1,19 +1,18 @@
 import React from "react";
-import {AxiosResponse} from "axios";
-import {AppStateType, DispatchType} from "../../redux/redux-store";
-import {UsersStateType, UserType} from "../../redux/reducers/usersReducer/types";
+import {AxiosResponse, default as axios} from "axios";
+import {AppStateType} from "../../redux/redux-store";
+import {UsersStateType} from "../../redux/reducers/usersReducer/types";
 import {
-    followAC,
-    setCurrentPageAC,
-    setTotalCountAC,
-    setUsersAC, toggleIsFetchingAC,
-    unFollowAC
+    follow,
+    setCurrentPage,
+    setTotalCount,
+    setUsers,
+    toggleIsFetching,
+    unFollow
 } from "../../redux/reducers/usersReducer/actions";
 import {connect, ConnectedProps} from "react-redux";
 import {Users} from "./Users";
 import {Preloader} from "../Preloader";
-
-const axios = require("axios").default;
 
 type MyState = {}
 
@@ -27,7 +26,7 @@ export class UsersContainer extends React.Component<PropsFromRedux, MyState> {
         this.props.toggleIsFetching(true);
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then((res: AxiosResponse) => {
             this.props.setUsers(res.data.items);
-            this.props.setTotalCountUsers(res.data.totalCount);
+            this.props.setTotalCount(res.data.totalCount);
             this.props.toggleIsFetching(false);
         });
     }
@@ -71,18 +70,14 @@ const mapStateToProps = (state: AppStateType): UsersStateType => {
     }
 };
 
-const mapDispatchToProps = (dispatch: DispatchType) => {
-    return {
-        follow: (id: number) => dispatch(followAC(id)),
-        unFollow: (id: number) => dispatch(unFollowAC(id)),
-        setUsers: (users: UserType[]) => dispatch(setUsersAC(users)),
-        setTotalCountUsers: (totalCount: number) => dispatch(setTotalCountAC(totalCount)),
-        setCurrentPage: (pageNumber: number) => dispatch(setCurrentPageAC(pageNumber)),
-        toggleIsFetching: (isFetching: boolean) => dispatch(toggleIsFetchingAC(isFetching)),
-    }
-};
-
-const UsersConnect = connect(mapStateToProps, mapDispatchToProps);
+const UsersConnect = connect(mapStateToProps, {
+    follow,
+    unFollow,
+    setUsers,
+    setTotalCount,
+    setCurrentPage,
+    toggleIsFetching,
+});
 
 export type PropsFromRedux = ConnectedProps<typeof UsersConnect>
 export default UsersConnect(UsersContainer);
