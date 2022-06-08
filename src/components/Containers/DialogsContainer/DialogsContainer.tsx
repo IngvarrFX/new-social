@@ -3,7 +3,7 @@ import {Dialogs} from "../../Dialogs";
 import {connect, ConnectedProps} from "react-redux";
 import {AppStateType, DispatchType} from "../../../redux/redux-store";
 import {useParams} from "react-router-dom";
-import {addMessageAC, newMessageTextAC} from "../../../redux/reducers/dialogsReducer/actions";
+import {addMessage, newMessageText} from "../../../redux/reducers/dialogsReducer/actions";
 
 type DialogsPropsType = PropsFromRedux
 
@@ -31,8 +31,8 @@ const mapStateToProps = (state: AppStateType) => ({
 })
 
 const mapDispatchToProps = (dispatch: DispatchType) => ({
-    addMessageCallback: (id: string) => dispatch(addMessageAC(id)),
-    newMessageTextCallback: (value: string) => dispatch(newMessageTextAC(value))
+    addMessageCallback: (id: string) => dispatch(addMessage(id)),
+    newMessageTextCallback: (value: string) => dispatch(newMessageText(value))
 })
 
 const DialogsConnect = connect(mapStateToProps, mapDispatchToProps);
