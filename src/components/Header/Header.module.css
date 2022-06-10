@@ -1,4 +1,19 @@
 .Header {
     grid-area: header;
     background-color: red;
+    position: relative;
+}
+
+.login {
+    position: absolute;
+    right: 5px;
+    top: 10px;
+}
+
+.login a {
+    color: white;
+}
+
+.login a:hover {
+    cursor: pointer;
 }

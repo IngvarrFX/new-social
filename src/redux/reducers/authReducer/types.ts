@@ -2,10 +2,11 @@ import {Nullable} from "../../../types/types";
 import {SET_USER_DATA} from "./actions";
 
 
-export type InitialStateType = {
+export type AuthUserDataType = {
     userId: Nullable<number>
     login: Nullable<string>
     email: Nullable<string>
+    isAuth: boolean
 }
 
 export type AuthActionsType = SetUserDataType
@@ -16,5 +17,6 @@ export type SetUserDataType = {
         userId: number
         login: string
         email: string
+        isAuth: boolean
     }
 }
