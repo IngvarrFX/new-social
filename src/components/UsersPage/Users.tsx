@@ -42,7 +42,7 @@ export const Users = (props: UsersPropsType) => {
                             </div>
                         </NavLink>
                         <button
-                            onClick={() => subscribeHandle(user.id, user.followed)}>{user.followed ? "follow" : "unfollow"}</button>
+                            onClick={() => subscribeHandle(user.id, user.followed)}>{user.followed ? "unfollow" : "follow"}</button>
                     </div>
                     <div className={styles.userDescription}>
                         <div className={styles.rightBlock}>
