@@ -1,9 +1,9 @@
 import React from "react";
 import {Route, Routes} from "react-router-dom";
-import {Header} from "./components/Header";
 import {NavBar} from "./components/NavBar";
 import {News} from "./components/News";
 import {Settings} from "./components/Settings";
+import HeaderConnect from "./components/Header/HeaderContainer";
 import UsersConnect from "./components/UsersPage/UsersContainer";
 import ProfileConnect from "./components/Profile/ProfileContainer";
 import DialogsConnect from "./components/Containers/DialogsContainer/DialogsContainer";
@@ -13,7 +13,7 @@ import "./App.css";
 function App() {
     return (
         <div className="App-wrapper">
-            <Header/>
+            <HeaderConnect/>
             <NavBar/>
             <div className="App-wrapper-content">
                 <Routes>
