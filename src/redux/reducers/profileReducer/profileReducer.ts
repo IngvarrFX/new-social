@@ -9,6 +9,7 @@ const initialState: profilePageType = {
         {id: v1(), message: "My first post!", likes: 5},
     ],
     newPostText: "",
+    userProfile: null,
 };
 
 export const profileReducer = (state: profilePageType = initialState, action: ProfileActionsType): profilePageType => {
