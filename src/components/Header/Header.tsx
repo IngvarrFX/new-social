@@ -5,9 +5,7 @@ import {Nullable} from "../../types/types";
 import {NavLink} from "react-router-dom";
 
 type HeaderPropsType = {
-    userId: Nullable<number>
     login: Nullable<string>
-    email: Nullable<string>
     isAuth: boolean
 }
 

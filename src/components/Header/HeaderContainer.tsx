@@ -1,9 +1,10 @@
 import React from "react";
 import {connect, ConnectedProps} from "react-redux";
 import {Header} from "./Header";
-import {AuthUserDataType, setUserData} from "../../redux/reducers/authReducer";
+import {setUserData} from "../../redux/reducers/authReducer";
 import {AppStateType} from "../../redux/redux-store";
 import axios from "axios";
+import {Nullable} from "../../types/types";
 
 type MyStateType = {};
 
@@ -20,21 +21,22 @@ class HeaderContainer extends React.Component<PropsFromRedux, MyStateType> {
     }
 
     render() {
-        const {userId, login, email, isAuth} = this.props;
+        const {login, isAuth} = this.props;
         return <Header
-            userId={userId}
             login={login}
-            email={email}
             isAuth={isAuth}
         />
     }
 }
 
-const mapStateToProps = (state: AppStateType): AuthUserDataType => {
+type MapStateToPropsType = {
+    login: Nullable<string>
+    isAuth: boolean
+}
+
+const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
-        userId: state.auth.userId,
         login: state.auth.login,
-        email: state.auth.email,
         isAuth: state.auth.isAuth,
     }
 }
