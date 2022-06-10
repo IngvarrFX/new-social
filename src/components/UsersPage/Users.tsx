@@ -35,9 +35,11 @@ export const Users = (props: UsersPropsType) => {
                 return <div className={styles.userBlock} key={user.id}>
                     <div className={styles.avaBlock}>
                         <NavLink to={`/profile/${user.id}`}>
-                            <img className={styles.userPhoto}
-                                 src={user.photos.small ? user.photos.small : "https://w7.pngwing.com/pngs/601/312/png-transparent-social-media-avatar-graphy-digital-media-profile-blue-text-logo.png"}
-                                 alt="avatar"/>
+                            <div>
+                                <img className={styles.userPhoto}
+                                     src={user.photos.small ? user.photos.small : "https://w7.pngwing.com/pngs/601/312/png-transparent-social-media-avatar-graphy-digital-media-profile-blue-text-logo.png"}
+                                     alt="avatar"/>
+                            </div>
                         </NavLink>
                         <button
                             onClick={() => subscribeHandle(user.id, user.followed)}>{user.followed ? "follow" : "unfollow"}</button>
