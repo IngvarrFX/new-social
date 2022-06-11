@@ -6,6 +6,7 @@ const initialState: UsersStateType = {
     currentPage: 1,
     pageSize: 5,
     isFetching: false,
+    toggleFollowingProgress: [],
 };
 
 export const usersReducer = (state: UsersStateType = initialState, action: UsersActionsType): UsersStateType => {
@@ -33,6 +34,13 @@ export const usersReducer = (state: UsersStateType = initialState, action: Users
         }
         case "TOGGLE_IS_FETCHING": {
             return {...state, isFetching: action.payload.isFetching}
+        }
+        case "TOGGLE_FOLLOWING_PROGRESS": {
+            return {
+                ...state, toggleFollowingProgress: action.payload.isFetching
+                    ? [...state.toggleFollowingProgress, action.payload.userId]
+                    : state.toggleFollowingProgress.filter((id) => id !== action.payload.userId)
+            }
         }
         default: {
             return state;
