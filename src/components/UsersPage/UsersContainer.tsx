@@ -1,32 +1,48 @@
 import React from "react";
-import {AxiosResponse, default as axios} from "axios";
 import {AppStateType} from "../../redux/redux-store";
 import {UsersStateType} from "../../redux/reducers/usersReducer/types";
 import {
     follow,
     setCurrentPage,
     setTotalCount,
-    setUsers,
+    setUsers, setToggleFollowingProgress,
     toggleIsFetching,
     unFollow
 } from "../../redux/reducers/usersReducer/actions";
 import {connect, ConnectedProps} from "react-redux";
 import {Users} from "./Users";
 import {Preloader} from "../Preloader";
+import {userAPI, UsersResponseType} from "../../api";
 
 type MyState = {}
 
 export class UsersContainer extends React.Component<PropsFromRedux, MyState> {
 
     subscribeHandle = (id: number, followed: boolean) => {
-        followed ? this.props.unFollow(id) : this.props.follow(id);
+        this.props.setToggleFollowingProgress(true, id);
+        if (followed) {
+            userAPI.unFollowOnUser(id).then((data) => {
+                if (data.resultCode === 0) {
+                    this.props.unFollow(id)
+                    this.props.setToggleFollowingProgress(false, id);
+                }
+            }).catch((error) => console.log(error))
+        } else {
+            this.props.setToggleFollowingProgress(true, id);
+            userAPI.followOnUser(id).then((data) => {
+                if (data.resultCode === 0) {
+                    this.props.follow(id)
+                    this.props.setToggleFollowingProgress(false, id);
+                }
+            }).catch((error) => console.log(error))
+        }
     }
 
     componentDidMount() {
         this.props.toggleIsFetching(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then((res: AxiosResponse) => {
-            this.props.setUsers(res.data.items);
-            this.props.setTotalCount(res.data.totalCount);
+        userAPI.getUsers(this.props.currentPage, this.props.pageSize).then((data: UsersResponseType) => {
+            this.props.setUsers(data.items);
+            this.props.setTotalCount(data.totalCount);
             this.props.toggleIsFetching(false);
         });
     }
@@ -34,8 +50,8 @@ export class UsersContainer extends React.Component<PropsFromRedux, MyState> {
     onChangeCurrentPage = (pageNumber: number) => {
         this.props.toggleIsFetching(true);
         this.props.setCurrentPage(pageNumber)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`).then((res: AxiosResponse) => {
-            this.props.setUsers(res.data.items);
+        userAPI.getUsers(this.props.currentPage, this.props.pageSize).then((data: UsersResponseType) => {
+            this.props.setUsers(data.items);
             this.props.toggleIsFetching(false);
         });
     }
@@ -51,6 +67,7 @@ export class UsersContainer extends React.Component<PropsFromRedux, MyState> {
                         pageSize={this.props.pageSize}
                         onChangeCurrentPage={this.onChangeCurrentPage}
                         subscribeHandle={this.subscribeHandle}
+                        isFollowingProgress={this.props.toggleFollowingProgress}
                     />
                 }
             </>
@@ -67,6 +84,7 @@ const mapStateToProps = (state: AppStateType): UsersStateType => {
         currentPage: state.users.currentPage,
         pageSize: state.users.pageSize,
         isFetching: state.users.isFetching,
+        toggleFollowingProgress: state.users.toggleFollowingProgress,
     }
 };
 
@@ -77,6 +95,7 @@ const UsersConnect = connect(mapStateToProps, {
     setTotalCount,
     setCurrentPage,
     toggleIsFetching,
+    setToggleFollowingProgress,
 });
 
 export type PropsFromRedux = ConnectedProps<typeof UsersConnect>
