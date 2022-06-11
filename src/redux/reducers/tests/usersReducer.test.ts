@@ -10,16 +10,16 @@ beforeEach(() => {
             id: 1,
             name: "user",
             followed: false,
-            photos: {small:"image",large: "image"},
-            status: 'Hello i am superman',
+            photos: {small: "image", large: "image"},
+            status: "Hello i am superman",
             uniqueUrlName: null,
         },
             {
                 id: 2,
                 name: "user2",
                 followed: false,
-                photos: {small:"image",large: "image"},
-                status: 'Hello i am superman',
+                photos: {small: "image", large: "image"},
+                status: "Hello i am superman",
                 uniqueUrlName: null,
             }
         ],
@@ -27,6 +27,7 @@ beforeEach(() => {
         currentPage: 1,
         pageSize: 5,
         isFetching: false,
+        toggleFollowingProgress: []
     };
 })
 
