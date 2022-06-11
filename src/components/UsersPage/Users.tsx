@@ -10,6 +10,7 @@ type UsersPropsType = {
     currentPage: number
     onChangeCurrentPage: (pageNumber: number) => void
     subscribeHandle: (id: number, followed: boolean) => void
+    isFollowingProgress: number[]
 }
 
 export const Users = (props: UsersPropsType) => {
@@ -42,6 +43,7 @@ export const Users = (props: UsersPropsType) => {
                             </div>
                         </NavLink>
                         <button
+                            disabled={props.isFollowingProgress.includes(user.id)}
                             onClick={() => subscribeHandle(user.id, user.followed)}>{user.followed ? "unfollow" : "follow"}</button>
                     </div>
                     <div className={styles.userDescription}>
