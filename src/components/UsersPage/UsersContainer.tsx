@@ -26,7 +26,7 @@ export class UsersContainer extends React.Component<PropsFromRedux, MyState> {
                     this.props.unFollow(id)
                     this.props.setToggleFollowingProgress(false, id);
                 }
-            }).catch((error) => console.log(error))
+            }).catch((error) => console.error(error))
         } else {
             this.props.setToggleFollowingProgress(true, id);
             userAPI.followOnUser(id).then((data) => {
@@ -34,7 +34,7 @@ export class UsersContainer extends React.Component<PropsFromRedux, MyState> {
                     this.props.follow(id)
                     this.props.setToggleFollowingProgress(false, id);
                 }
-            }).catch((error) => console.log(error))
+            }).catch((error) => console.error(error))
         }
     }
 
