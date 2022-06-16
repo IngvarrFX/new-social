@@ -1,4 +1,4 @@
-import {messagePageType} from "../../store";
+import {messagePageType} from "../../types";
 import {v1} from "uuid";
 import {DialogsActionsType} from "./types";
 import {ADD_MESSAGE, NEW_MESSAGE_TEXT} from "./actions";

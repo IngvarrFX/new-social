@@ -1,6 +1,6 @@
 import axios, {AxiosResponse} from "axios";
 import {AuthMeType, FollowingType, UsersResponseType} from "./types";
-import {UserProfileType} from "../redux/store";
+import {UserProfileType} from "../redux/types";
 
 
 const api = axios.create({

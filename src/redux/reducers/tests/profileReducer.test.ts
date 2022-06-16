@@ -1,7 +1,7 @@
-import {profilePageType} from "../../store";
 import {v1} from "uuid";
 import {addPostAC, newPostTextAC} from "../profileReducer/actions";
 import {profileReducer} from "../profileReducer";
+import {profilePageType} from "../../types";
 
 let initialState: profilePageType;
 beforeEach(() => {

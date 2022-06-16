@@ -1,4 +1,4 @@
-import {messagePageType} from "../../store";
+import {messagePageType} from "../../types";
 import {v1} from "uuid";
 import {dialogsReducer} from "../dialogsReducer";
 import {addMessage, newMessageText} from "../dialogsReducer/actions";

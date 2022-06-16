@@ -1,4 +1,4 @@
-import {profilePageType} from "../../store";
+import {profilePageType} from "../../types";
 import {v1} from "uuid";
 import {ProfileActionsType} from "./types";
 import {ADD_POST, NEW_POST_MESSAGE} from "./actions";

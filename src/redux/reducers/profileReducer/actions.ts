@@ -1,5 +1,5 @@
 import {AddPostACType, NewPostTextACType, SetUserProfileACType} from "./types";
-import {UserProfileType} from "../../store";
+import {UserProfileType} from "../../types";
 
 export const ADD_POST = "ADD_POST";
 export const NEW_POST_MESSAGE = "NEW_POST_MESSAGE";

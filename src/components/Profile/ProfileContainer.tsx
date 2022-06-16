@@ -1,7 +1,7 @@
 import React from "react";
 import {connect, ConnectedProps} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
-import {UserProfileType} from "../../redux/store";
+import {UserProfileType} from "../../redux/types";
 import {Profile} from "./Profile";
 import {setUserProfile} from "../../redux/reducers/profileReducer/actions";
 import {profileAPI} from "../../api/api";

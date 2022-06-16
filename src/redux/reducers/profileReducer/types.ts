@@ -1,5 +1,5 @@
 import {ADD_POST, NEW_POST_MESSAGE, SET_USER_PROFILE} from "./actions";
-import {UserProfileType} from "../../store";
+import {UserProfileType} from "../../types";
 
 export type ProfileActionsType = AddPostACType | NewPostTextACType | SetUserProfileACType
 
