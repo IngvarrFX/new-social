@@ -3,7 +3,7 @@ import {
     SET_CURRENT_PAGE,
     SET_TOTAL_USERS_COUNT,
     SET_USERS,
-    TOGGLE_FOLLOWING_PROGRESS,
+    SET_FOLLOWING_IN_PROGRESS,
     TOGGLE_IS_FETCHING,
     UNFOLLOW
 } from "./actions";
@@ -16,7 +16,7 @@ export type UsersActionsType =
     | SetTotalUsersCountACType
     | SetCurrentPageACType
     | ToggleIsFetchingACType
-    | SetToggleFollowingProgressACType
+    | SetFollowingInProgressACType
 
 export type FollowACType = {
     type: typeof FOLLOW
@@ -60,8 +60,8 @@ export type ToggleIsFetchingACType = {
     }
 };
 
-export type SetToggleFollowingProgressACType = {
-    type: typeof TOGGLE_FOLLOWING_PROGRESS
+export type SetFollowingInProgressACType = {
+    type: typeof SET_FOLLOWING_IN_PROGRESS
     payload: {
         isFetching: boolean
         userId: number
@@ -74,7 +74,7 @@ export type UsersStateType = {
     currentPage: number
     pageSize: number
     isFetching: boolean
-    toggleFollowingProgress: number[]
+    followingInProgress: number[]
 }
 
 export type UserType = {
