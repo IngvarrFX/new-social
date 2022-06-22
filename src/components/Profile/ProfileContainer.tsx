@@ -3,17 +3,14 @@ import {connect, ConnectedProps} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
 import {UserProfileType} from "../../redux/types";
 import {Profile} from "./Profile";
-import {setUserProfile} from "../../redux/reducers/profileReducer/actions";
-import {profileAPI} from "../../api/api";
+import {getUserProfileTC} from "../../redux/reducers/profileReducer/thunks";
 
 type MyState = {}
 
 export class ProfileContainer extends React.Component<PropsFromRedux, MyState> {
 
     componentDidMount() {
-        profileAPI.getUserProfile(2).then((userProfileData) => {
-            this.props.setUserProfile(userProfileData);
-        });
+        this.props.getUserProfileTC();
     }
 
     render() {
@@ -29,7 +26,7 @@ const mapStateToProps = (state: AppStateType): { userProfile: UserProfileType | 
     }
 }
 
-const ProfileConnect = connect(mapStateToProps, {setUserProfile});
+const ProfileConnect = connect(mapStateToProps, {getUserProfileTC});
 
 export type PropsFromRedux = ConnectedProps<typeof ProfileConnect>
 export default ProfileConnect(ProfileContainer);
