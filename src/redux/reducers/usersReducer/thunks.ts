@@ -32,11 +32,13 @@ export const unFollowTC = (id: number): ThunkAction<void, AppStateType, unknown,
     }).catch((error) => console.error(error))
 }
 
-export const getUsersTC = (currentPage: number, pageSize: number, pageNumber?: number): ThunkAction<void, AppStateType, unknown, AnyAction> => (dispatch) => {
+export const getUsersTC = (pageNumber?: number): ThunkAction<void, AppStateType, unknown, AnyAction> => (dispatch, getState) => {
+    debugger
     dispatch(toggleIsFetching(true));
     if (pageNumber) {
         dispatch(setCurrentPage(pageNumber));
     }
+    const {currentPage, pageSize} = getState().users;
     userAPI.getUsers(currentPage, pageSize).then((data: UsersResponseType) => {
         dispatch(setUsers(data.items));
         dispatch(setTotalCount(data.totalCount));

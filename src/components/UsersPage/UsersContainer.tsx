@@ -19,11 +19,11 @@ export class UsersContainer extends React.Component<PropsFromRedux, MyState> {
     }
 
     componentDidMount() {
-        this.props.getUsersTC(this.props.currentPage, this.props.pageSize);
+        this.props.getUsersTC();
     }
 
     onChangeCurrentPage = (pageNumber: number) => {
-        this.props.getUsersTC(this.props.currentPage, this.props.pageSize, pageNumber);
+        this.props.getUsersTC(pageNumber);
     }
 
     render() {
