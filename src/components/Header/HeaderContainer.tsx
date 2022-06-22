@@ -1,21 +1,15 @@
 import React from "react";
 import {connect, ConnectedProps} from "react-redux";
 import {Header} from "./Header";
-import {setUserData} from "../../redux/reducers/authReducer";
 import {AppStateType} from "../../redux/redux-store";
 import {Nullable} from "../../types/types";
-import {authAPI} from "../../api/api";
+import {authMeTC} from "../../redux/reducers/authReducer/thunks";
 
 type MyStateType = {};
 
 class HeaderContainer extends React.Component<PropsFromRedux, MyStateType> {
     componentDidMount() {
-        authAPI.authMe().then((data) => {
-            if (data.resultCode === 0) {
-                const {id, login, email} = data.data;
-                this.props.setUserData(id, login, email, true);
-            }
-        })
+        this.props.authMeTC();
     }
 
     render() {
@@ -40,7 +34,7 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
 }
 
 
-const HeaderConnect = connect(mapStateToProps, {setUserData});
+const HeaderConnect = connect(mapStateToProps, {authMeTC});
 
 
 export type PropsFromRedux = ConnectedProps<typeof HeaderConnect>
