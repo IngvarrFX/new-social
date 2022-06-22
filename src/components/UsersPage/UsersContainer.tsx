@@ -1,59 +1,29 @@
 import React from "react";
 import {AppStateType} from "../../redux/redux-store";
 import {UsersStateType} from "../../redux/reducers/usersReducer/types";
-import {
-    follow,
-    setCurrentPage,
-    setTotalCount,
-    setUsers, setFollowingInProgress,
-    toggleIsFetching,
-    unFollow
-} from "../../redux/reducers/usersReducer/actions";
 import {connect, ConnectedProps} from "react-redux";
 import {Users} from "./Users";
 import {Preloader} from "../Preloader";
-import {userAPI, UsersResponseType} from "../../api";
+import {followTC, getUsersTC, unFollowTC} from "../../redux/reducers/usersReducer/thunks";
 
 type MyState = {}
 
 export class UsersContainer extends React.Component<PropsFromRedux, MyState> {
 
     subscribeHandle = (id: number, followed: boolean) => {
-        this.props.setFollowingInProgress(true, id);
         if (followed) {
-            userAPI.unFollowOnUser(id).then((data) => {
-                if (data.resultCode === 0) {
-                    this.props.unFollow(id)
-                    this.props.setFollowingInProgress(false, id);
-                }
-            }).catch((error) => console.error(error))
+            this.props.unFollowTC(id);
         } else {
-            this.props.setFollowingInProgress(true, id);
-            userAPI.followOnUser(id).then((data) => {
-                if (data.resultCode === 0) {
-                    this.props.follow(id)
-                    this.props.setFollowingInProgress(false, id);
-                }
-            }).catch((error) => console.error(error))
+            this.props.followTC(id);
         }
     }
 
     componentDidMount() {
-        this.props.toggleIsFetching(true);
-        userAPI.getUsers(this.props.currentPage, this.props.pageSize).then((data: UsersResponseType) => {
-            this.props.setUsers(data.items);
-            this.props.setTotalCount(data.totalCount);
-            this.props.toggleIsFetching(false);
-        });
+        this.props.getUsersTC(this.props.currentPage, this.props.pageSize);
     }
 
     onChangeCurrentPage = (pageNumber: number) => {
-        this.props.toggleIsFetching(true);
-        this.props.setCurrentPage(pageNumber)
-        userAPI.getUsers(this.props.currentPage, this.props.pageSize).then((data: UsersResponseType) => {
-            this.props.setUsers(data.items);
-            this.props.toggleIsFetching(false);
-        });
+        this.props.getUsersTC(this.props.currentPage, this.props.pageSize, pageNumber);
     }
 
     render() {
@@ -89,13 +59,9 @@ const mapStateToProps = (state: AppStateType): UsersStateType => {
 };
 
 const UsersConnect = connect(mapStateToProps, {
-    follow,
-    unFollow,
-    setUsers,
-    setTotalCount,
-    setCurrentPage,
-    toggleIsFetching,
-    setFollowingInProgress,
+    followTC,
+    unFollowTC,
+    getUsersTC,
 });
 
 export type PropsFromRedux = ConnectedProps<typeof UsersConnect>
