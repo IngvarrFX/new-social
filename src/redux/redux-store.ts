@@ -20,7 +20,7 @@ let rootReducer = combineReducers({
 export type AppStateType = ReturnType<typeof rootReducer>;
 export type AppDispatch = ReturnType<typeof store.dispatch>;
 
-export let store: Store<AppStateType, AppActionType> & { dispatch: DispatchType } = createStore(rootReducer);
+export let store: Store<AppStateType, AppActionType> & { dispatch: DispatchType } = createStore(rootReducer,);
 type AppActionType = ProfileActionsType | DialogsActionsType | UsersActionsType
 export type DispatchType = (args: AppActionType) => AppActionType;
 
