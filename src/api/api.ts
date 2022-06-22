@@ -14,7 +14,6 @@ const api = axios.create({
 
 export const userAPI = {
     getUsers(currentPage: number, pageSize: number): Promise<UsersResponseType> {
-        debugger
         return api.get(`users?page=${currentPage}&count=${pageSize}`)
             .then((res: AxiosResponse) => res.data)
     },

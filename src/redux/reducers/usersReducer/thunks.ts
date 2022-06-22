@@ -33,7 +33,6 @@ export const unFollowTC = (id: number): ThunkAction<void, AppStateType, unknown,
 }
 
 export const getUsersTC = (pageNumber?: number): ThunkAction<void, AppStateType, unknown, AnyAction> => (dispatch, getState) => {
-    debugger
     dispatch(toggleIsFetching(true));
     if (pageNumber) {
         dispatch(setCurrentPage(pageNumber));

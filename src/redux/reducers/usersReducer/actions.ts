@@ -41,7 +41,6 @@ export const setTotalCount = (count: number): SetTotalUsersCountACType => {
 };
 
 export const setCurrentPage = (pageNumber: number): SetCurrentPageACType => {
-    debugger;
     return {
         type: SET_CURRENT_PAGE, payload: {pageNumber},
     }
