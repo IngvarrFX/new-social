@@ -1,13 +1,20 @@
 import React from "react";
 import styles from "./ProfileInfo.module.css";
-import img from "../../../assets/mainBackground.jpg";
+import avatar from "../../../assets/avatar.png";
+import {UserProfileType} from "../../../redux/types";
 
-export const ProfileInfo = () => {
+type ProfilePropsType = {
+    profileData: UserProfileType | null
+}
+
+export const ProfileInfo = (props: ProfilePropsType) => {
+
     return (
         <div className={styles.Wrapper}>
-            <img className={styles.Image}
-                 src={img}
-                 alt="background"/>
+            <div className={styles.imageBlock}>
+                <img src={props.profileData?.photos.large ? props.profileData?.photos.large : avatar}
+                     alt="background"/>
+            </div>
             <div className={styles.Description}>
                 Ava + Description
             </div>
