@@ -1,7 +1,7 @@
 import {profilePageType} from "../../types";
 import {v1} from "uuid";
 import {ProfileActionsType} from "./types";
-import {ADD_POST, NEW_POST_MESSAGE} from "./actions";
+import {ADD_POST, NEW_POST_MESSAGE, SET_USER_PROFILE} from "./actions";
 
 const initialState: profilePageType = {
     posts: [
@@ -23,6 +23,9 @@ export const profileReducer = (state: profilePageType = initialState, action: Pr
         }
         case NEW_POST_MESSAGE: {
             return {...state, newPostText: action.payload.value};
+        }
+        case SET_USER_PROFILE: {
+            return {...state, userProfile: {...action.payload.userProfile}}
         }
         default: {
             return state;
