@@ -2,6 +2,7 @@ import React from "react";
 import {Route, Routes} from "react-router-dom";
 import {NavBar} from "./components/NavBar";
 import {News} from "./components/News";
+import {Login} from "./components/Login";
 import {Settings} from "./components/Settings";
 import HeaderConnect from "./components/Header/HeaderContainer";
 import UsersConnect from "./components/UsersPage/UsersContainer";
@@ -25,6 +26,7 @@ function App() {
                     <Route path="/music" element={<h1>Music</h1>}/>
                     <Route path="/news" element={<News/>}/>
                     <Route path="/settings" element={<Settings/>}/>
+                    <Route path="/login" element={<Login/>}/>
                     <Route path="*" element={<h1>404</h1>}/>
                 </Routes>
             </div>
