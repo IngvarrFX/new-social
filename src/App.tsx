@@ -18,7 +18,8 @@ function App() {
             <div className="App-wrapper-content">
                 <Routes>
                     <Route path="/" element={<ProfileConnect/>}/>
-                    <Route path="/profile/*" element={<ProfileConnect/>}/>
+                    <Route path="/profile" element={<ProfileConnect/>}/>
+                    <Route path="/profile/:userId" element={<ProfileConnect/>}/>
                     <Route path="/messages/*" element={<DialogsConnect/>}/>
                     <Route path="users" element={<UsersConnect/>}/>
                     <Route path="/music" element={<h1>Music</h1>}/>
