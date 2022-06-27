@@ -8,3 +8,7 @@
 .Description{
     padding-left: 20px;
 }
+.imageBlock {
+    display: block;
+    width: 200px;
+}
