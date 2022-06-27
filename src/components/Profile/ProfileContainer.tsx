@@ -13,11 +13,12 @@ export function ProfileContainer(props: PropsFromRedux) {
     useEffect(() => {
         if (userId) {
             props.getUserProfileTC(Number(userId))
+            return;
         }
-        if(props.profileId){
+        if (props.profileId) {
             props.getUserProfileTC(props.profileId)
         }
-    }, [userId,props])
+    }, [userId, props.profileId])
 
 
     return <>
