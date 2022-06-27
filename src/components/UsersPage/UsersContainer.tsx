@@ -5,6 +5,7 @@ import {connect, ConnectedProps} from "react-redux";
 import {Users} from "./Users";
 import {Preloader} from "../Preloader";
 import {followTC, getUsersTC, unFollowTC} from "../../redux/reducers/usersReducer/thunks";
+import {withAuthRedirect} from "../../customHOCs/withAuthRedirect";
 
 type MyState = {}
 
@@ -58,6 +59,8 @@ const mapStateToProps = (state: AppStateType): UsersStateType => {
     }
 };
 
+const withRedirect = withAuthRedirect(UsersContainer);
+
 const UsersConnect = connect(mapStateToProps, {
     followTC,
     unFollowTC,
@@ -65,4 +68,4 @@ const UsersConnect = connect(mapStateToProps, {
 });
 
 export type PropsFromRedux = ConnectedProps<typeof UsersConnect>
-export default UsersConnect(UsersContainer);
+export default UsersConnect(withRedirect);

@@ -4,6 +4,7 @@ import {connect, ConnectedProps} from "react-redux";
 import {AppStateType, DispatchType} from "../../../redux/redux-store";
 import {useParams} from "react-router-dom";
 import {addMessage, newMessageText} from "../../../redux/reducers/dialogsReducer/actions";
+import {withAuthRedirect} from "../../../customHOCs/withAuthRedirect";
 
 type DialogsPropsType = PropsFromRedux
 
@@ -35,9 +36,11 @@ const mapDispatchToProps = (dispatch: DispatchType) => ({
     newMessageTextCallback: (value: string) => dispatch(newMessageText(value))
 })
 
+const withRedirect = withAuthRedirect(DialogsContainer);
+
 const DialogsConnect = connect(mapStateToProps, mapDispatchToProps);
 
 type PropsFromRedux = ConnectedProps<typeof DialogsConnect>
-export default DialogsConnect(DialogsContainer);
+export default DialogsConnect(withRedirect);
 
 

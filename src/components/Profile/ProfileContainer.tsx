@@ -6,6 +6,7 @@ import {Profile} from "./Profile";
 import {getUserProfileTC} from "../../redux/reducers/profileReducer/thunks";
 import {Nullable} from "../../types/types";
 import {useParams} from "react-router-dom";
+import {withAuthRedirect} from "../../customHOCs/withAuthRedirect";
 
 export function ProfileContainer(props: PropsFromRedux) {
     const {userId} = useParams<string>();
@@ -39,7 +40,9 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     }
 }
 
+const withRedirect = withAuthRedirect(ProfileContainer);
+
 const ProfileConnect = connect(mapStateToProps, {getUserProfileTC});
 
 export type PropsFromRedux = ConnectedProps<typeof ProfileConnect>
-export default ProfileConnect(ProfileContainer);
+export default ProfileConnect(withRedirect);

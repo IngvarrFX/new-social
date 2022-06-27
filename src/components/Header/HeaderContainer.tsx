@@ -4,6 +4,7 @@ import {Header} from "./Header";
 import {AppStateType} from "../../redux/redux-store";
 import {Nullable} from "../../types/types";
 import {authMeTC} from "../../redux/reducers/authReducer/thunks";
+import {withAuthRedirect} from "../../customHOCs/withAuthRedirect";
 
 type MyStateType = {};
 
@@ -32,10 +33,10 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
         isAuth: state.auth.isAuth,
     }
 }
-
+const withRedirect = withAuthRedirect(HeaderContainer);
 
 const HeaderConnect = connect(mapStateToProps, {authMeTC});
 
 
 export type PropsFromRedux = ConnectedProps<typeof HeaderConnect>
-export default HeaderConnect(HeaderContainer);
+export default HeaderConnect(withRedirect);
