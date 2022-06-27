@@ -1,27 +1,39 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {connect, ConnectedProps} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
 import {UserProfileType} from "../../redux/types";
 import {Profile} from "./Profile";
 import {getUserProfileTC} from "../../redux/reducers/profileReducer/thunks";
+import {Nullable} from "../../types/types";
+import {useParams} from "react-router-dom";
 
-type MyState = {}
+export function ProfileContainer(props: PropsFromRedux) {
+    const {userId} = useParams<string>();
 
-export class ProfileContainer extends React.Component<PropsFromRedux, MyState> {
+    useEffect(() => {
+        if (userId) {
+            props.getUserProfileTC(Number(userId))
+        }
+        if(props.profileId){
+            props.getUserProfileTC(props.profileId)
+        }
+    }, [userId,props])
 
-    componentDidMount() {
-        this.props.getUserProfileTC();
-    }
 
-    render() {
-        return <>
-            <Profile/>
-        </>
-    }
+    return <>
+        <Profile profileData={props.userProfile}/>
+    </>
+
 }
 
-const mapStateToProps = (state: AppStateType): { userProfile: UserProfileType | null } => {
+type MapStateToPropsType = {
+    userProfile: UserProfileType | null
+    profileId: Nullable<number>
+}
+
+const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
+        profileId: state.auth.userId,
         userProfile: state.profilePage.userProfile,
     }
 }
