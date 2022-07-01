@@ -1,15 +1,31 @@
 import React from "react";
 import {AppStateType} from "../../redux/redux-store";
-import {UsersStateType} from "../../redux/reducers/usersReducer/types";
-import {connect, ConnectedProps} from "react-redux";
+import {UsersStateType, UserType} from "../../redux/reducers/usersReducer/types";
+import {connect} from "react-redux";
 import {Users} from "./Users";
 import {Preloader} from "../Preloader";
 import {followTC, getUsersTC, unFollowTC} from "../../redux/reducers/usersReducer/thunks";
 import {withAuthRedirect} from "../../customHOCs/withAuthRedirect";
+import {compose} from "redux";
 
 type MyState = {}
 
-export class UsersContainer extends React.Component<PropsFromRedux, MyState> {
+type MapStateToPropsType = {
+    users: UserType[]
+    totalUsersCount: number
+    currentPage: number
+    pageSize: number
+    isFetching: boolean
+    followingInProgress: number[]
+}
+
+type MapDispatchToPropsType = {
+    followTC: (id: number) => void
+    unFollowTC: (id: number) => void
+    getUsersTC: (pageNumber?: number) => void
+}
+
+export class UsersContainer extends React.Component<MapStateToPropsType & MapDispatchToPropsType, MyState> {
 
     subscribeHandle = (id: number, followed: boolean) => {
         if (followed) {
@@ -57,15 +73,11 @@ const mapStateToProps = (state: AppStateType): UsersStateType => {
         isFetching: state.users.isFetching,
         followingInProgress: state.users.followingInProgress,
     }
-};
+}
 
-const withRedirect = withAuthRedirect(UsersContainer);
-
-const UsersConnect = connect(mapStateToProps, {
-    followTC,
-    unFollowTC,
-    getUsersTC,
-});
-
-export type PropsFromRedux = ConnectedProps<typeof UsersConnect>
-export default UsersConnect(withRedirect);
+export default compose<React.ComponentType>(withAuthRedirect, connect(mapStateToProps,
+    {
+        followTC,
+        unFollowTC,
+        getUsersTC,
+    }))(UsersContainer)

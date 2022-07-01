@@ -1,12 +1,24 @@
 import React from "react";
 import {Dialogs} from "../../Dialogs";
-import {connect, ConnectedProps} from "react-redux";
+import {connect} from "react-redux";
 import {AppStateType, DispatchType} from "../../../redux/redux-store";
 import {useParams} from "react-router-dom";
 import {addMessage, newMessageText} from "../../../redux/reducers/dialogsReducer/actions";
 import {withAuthRedirect} from "../../../customHOCs/withAuthRedirect";
+import {compose} from "redux";
+import {DialogsType} from "../../../types";
 
-type DialogsPropsType = PropsFromRedux
+type MapStateToPropsType = {
+    dialogs: DialogsType[] | undefined
+    value: string
+}
+
+type MapDispatchToPropsType = {
+    addMessageCallback: (id: string) => void
+    newMessageTextCallback: (value: string) => void
+}
+
+type DialogsPropsType = MapStateToPropsType & MapDispatchToPropsType
 
 export const DialogsContainer = (props: DialogsPropsType) => {
     const {dialogs, value, newMessageTextCallback, addMessageCallback} = props;
@@ -36,11 +48,6 @@ const mapDispatchToProps = (dispatch: DispatchType) => ({
     newMessageTextCallback: (value: string) => dispatch(newMessageText(value))
 })
 
-const withRedirect = withAuthRedirect(DialogsContainer);
-
-const DialogsConnect = connect(mapStateToProps, mapDispatchToProps);
-
-type PropsFromRedux = ConnectedProps<typeof DialogsConnect>
-export default DialogsConnect(withRedirect);
+export default compose<React.ComponentType>(withAuthRedirect,connect(mapStateToProps, mapDispatchToProps))(DialogsContainer)
 
 

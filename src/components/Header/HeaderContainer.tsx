@@ -1,5 +1,6 @@
 import React from "react";
-import {connect, ConnectedProps} from "react-redux";
+import {connect} from "react-redux";
+import {compose} from "redux";
 import {Header} from "./Header";
 import {AppStateType} from "../../redux/redux-store";
 import {Nullable} from "../../types/types";
@@ -8,7 +9,19 @@ import {withAuthRedirect} from "../../customHOCs/withAuthRedirect";
 
 type MyStateType = {};
 
-class HeaderContainer extends React.Component<PropsFromRedux, MyStateType> {
+type MapStateToPropsType = {
+    login: Nullable<string>
+    isAuth: boolean
+}
+
+type MapDispatchToPropsType = {
+    authMeTC: () => void
+}
+
+type OwnPropsType = MapStateToPropsType & MapDispatchToPropsType
+
+
+class HeaderContainer extends React.Component<OwnPropsType, MyStateType> {
     componentDidMount() {
         this.props.authMeTC();
     }
@@ -22,21 +35,11 @@ class HeaderContainer extends React.Component<PropsFromRedux, MyStateType> {
     }
 }
 
-type MapStateToPropsType = {
-    login: Nullable<string>
-    isAuth: boolean
-}
-
 const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
         login: state.auth.login,
         isAuth: state.auth.isAuth,
     }
 }
-const withRedirect = withAuthRedirect(HeaderContainer);
 
-const HeaderConnect = connect(mapStateToProps, {authMeTC});
-
-
-export type PropsFromRedux = ConnectedProps<typeof HeaderConnect>
-export default HeaderConnect(withRedirect);
+export default compose<React.ComponentType>(withAuthRedirect, connect(mapStateToProps, {authMeTC}))(HeaderContainer)

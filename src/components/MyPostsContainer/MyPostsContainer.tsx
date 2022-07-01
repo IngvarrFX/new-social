@@ -1,10 +1,23 @@
 import React from "react";
 import {MyPosts} from "../MyPosts";
-import {connect, ConnectedProps} from "react-redux";
+import {connect} from "react-redux";
 import {AppStateType, DispatchType} from "../../redux/redux-store";
 import {addPostAC, newPostTextAC} from "../../redux/reducers/profileReducer/actions";
+import {compose} from "redux";
+import {withAuthRedirect} from "../../customHOCs/withAuthRedirect";
+import {PostType} from "../../types";
 
-type MyPostsPropsType  = PropsFromRedux
+type MapStateToPropsType = {
+    posts: PostType[]
+    value: string
+}
+
+type MapDispatchToPropsType = {
+    addPostCallback: () => void
+    newPostTextCallback: (value: string) => void
+}
+
+type MyPostsPropsType = MapStateToPropsType & MapDispatchToPropsType
 
 const MyPostsContainer = (props: MyPostsPropsType) => {
     const {posts, value, addPostCallback, newPostTextCallback} = props;
@@ -30,9 +43,6 @@ const mapDispatchToProps = (dispatch: DispatchType) => ({
     newPostTextCallback: (value: string) => dispatch(newPostTextAC(value))
 })
 
-const MyPostsConnect = connect(mapStateToProps, mapDispatchToProps);
-
-type PropsFromRedux = ConnectedProps<typeof MyPostsConnect>
-export default MyPostsConnect(MyPostsContainer);
+export default compose<React.ComponentType>(withAuthRedirect, connect(mapStateToProps, mapDispatchToProps))(MyPostsContainer)
 
 
