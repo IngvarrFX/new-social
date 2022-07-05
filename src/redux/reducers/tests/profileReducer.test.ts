@@ -12,6 +12,7 @@ beforeEach(() => {
         ],
         newPostText: "",
         userProfile: null,
+        profileStatus: "",
     };
 })
 
