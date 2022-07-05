@@ -1,6 +1,6 @@
 import {AuthActionsType, AuthUserDataType} from "./types";
 
-const initialState = {
+const initialState: AuthUserDataType = {
     userId: null,
     login: null,
     email: null,
