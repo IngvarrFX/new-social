@@ -12,6 +12,7 @@ export type profilePageType = {
     posts: PostType[]
     newPostText: string
     userProfile: null | UserProfileType
+    profileStatus: string
 }
 
 export type messagePageType = {
