@@ -1,0 +1,16 @@
+.container {
+    list-style: none;
+    display: flex;
+}
+.item {
+    margin: 0 5px;
+}
+
+.item.current{
+    width: 20px;
+    background-color: antiquewhite;
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+    border-radius: 50px;
+}

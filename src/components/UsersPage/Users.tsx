@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./UsersPage.module.css";
 import {UserType} from "../../redux/reducers/usersReducer/types";
 import {NavLink} from "react-router-dom";
+import {Pagination} from "../Pagination";
 
 type UsersPropsType = {
     users: UserType[]
@@ -25,12 +26,16 @@ export const Users = (props: UsersPropsType) => {
         return <span>Loading...</span>
     }
     return (<div className={styles.wrapper}>
-            <div>
-                {pages.map((page) => <span
+            <div className={styles.pagination}>
+                {/*{pages.map((page) => <span
                     key={page}
                     className={currentPage === page ? styles.currentPage : styles.pages}
                     onClick={() => onChangeCurrentPage(page)}
-                >{page}</span>)}
+                >{page}</span>)}*/}
+                <Pagination currentPage={currentPage}
+                            pageSize={pageSize}
+                            onPageChange={onChangeCurrentPage}
+                            totalCount={totalUsersCount}/>
             </div>
             {users.map(user => {
                 return <div className={styles.userBlock} key={user.id}>
