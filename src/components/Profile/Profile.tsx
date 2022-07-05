@@ -10,7 +10,7 @@ type ProfilePropsType = {
 
 export const Profile = (props: ProfilePropsType) => {
     const {profileData} = props;
-    return (<div>
+    return (<div className={styles.container}>
             <ProfileInfo profileData={profileData}/>
             <div className={styles.PostsBlock}>
                 <MyPostsConnect/>
