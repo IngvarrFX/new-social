@@ -1,5 +1,5 @@
 import {Nullable} from "../../../types/types";
-import {SET_USER_DATA} from "./actions";
+import {SET_USER_DATA, SET_USER_ID} from "./actions";
 
 
 export type AuthUserDataType = {
@@ -9,7 +9,7 @@ export type AuthUserDataType = {
     isAuth: boolean
 }
 
-export type AuthActionsType = SetUserDataType
+export type AuthActionsType = SetUserDataType | SetUserIdType
 
 export type SetUserDataType = {
     type: typeof SET_USER_DATA
@@ -17,6 +17,14 @@ export type SetUserDataType = {
         userId: number
         login: string
         email: string
+        isAuth: boolean
+    }
+}
+
+export type SetUserIdType = {
+    type: typeof SET_USER_ID
+    payload: {
+        userId: Nullable<number>
         isAuth: boolean
     }
 }
