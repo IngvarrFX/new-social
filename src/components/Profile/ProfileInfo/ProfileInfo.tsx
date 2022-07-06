@@ -9,11 +9,11 @@ type ProfilePropsType = {
 }
 
 export const ProfileInfo = (props: ProfilePropsType) => {
-
+    const {profileData} = props;
     return (
         <div className={styles.Wrapper}>
             <div className={styles.imageBlock}>
-                <img src={props.profileData?.photos.large ? props.profileData?.photos.large : avatar}
+                <img src={profileData?.photos.large ? profileData?.photos.large : avatar}
                      alt="background"/>
             </div>
             <ProfileStatusContainer/>
