@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useState} from "react";
+import React, {ChangeEvent, useEffect, useState} from "react";
 
 type EditableSpanPropsType = {
     text: string
@@ -11,10 +11,14 @@ export const EditableSpan = (props: EditableSpanPropsType) => {
     const [editMode, setEditMode] = useState(false);
     const [value, setValue] = useState(text);
 
+    useEffect(()=> {
+        setValue(text);
+    },[text])
+
 
     const onUnEditMode = () => {
         setEditMode(false)
-        callback(value)
+        text !== value && callback(value)
     }
 
     const onEditMode = () => {
