@@ -1,0 +1,23 @@
+.form {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+.form input {
+    margin-bottom: 5px;
+}
+
+.form div label {
+    font-size: 17px;
+    font-weight: 400;
+    margin-bottom: 5px;
+    margin-top: -10px;
+}
+
+
+.form div {
+    margin-bottom: 5px;
+    margin-top: -10px;
+}
