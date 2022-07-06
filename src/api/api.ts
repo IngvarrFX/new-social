@@ -7,7 +7,7 @@ const api = axios.create({
     withCredentials: true,
     headers: {
         // @ts-ignore
-        'api-key': process.env.REACT_APP_API_KEY,
+        "api-key": process.env.REACT_APP_API_KEY,
     }
 });
 
@@ -28,6 +28,12 @@ export const authAPI = {
     authMe(): Promise<AuthMeType> {
         return api.get("auth/me").then((res: AxiosResponse) => res.data)
     },
+    login(data: any): Promise<any> {
+        return api.post(`auth/login`, data).then((res: AxiosResponse) => res.data)
+    },
+    logOut(): Promise<any> {
+        return api.delete(`auth/login`).then((res: AxiosResponse) => res.data)
+    },
 }
 
 export const profileAPI = {
@@ -37,8 +43,8 @@ export const profileAPI = {
     getProfileStatus(userId: number) {
         return api.get(`profile/status/${userId}`).then((res: AxiosResponse) => res.data)
     },
-    updateProfileStatus(status: string){
-        return api.put(`profile/status`,{status}).then((res: AxiosResponse) => res.data)
+    updateProfileStatus(status: string) {
+        return api.put(`profile/status`, {status}).then((res: AxiosResponse) => res.data)
     }
 }
 
