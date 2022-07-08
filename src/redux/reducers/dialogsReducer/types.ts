@@ -8,6 +8,7 @@ export type AddMessageACType = {
     type: typeof ADD_MESSAGE
     payload: {
         id: string
+        message: string
     }
 };
 
