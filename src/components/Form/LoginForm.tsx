@@ -3,6 +3,7 @@ import {SubmitHandler, useForm} from "react-hook-form";
 import styles from "./LoginForm.module.css";
 import {useDispatch} from "react-redux";
 import {loginTC} from "../../redux/reducers/authReducer/thunks";
+import {Button} from "../Button";
 
 type IFormInput = {
     email: string;
@@ -28,7 +29,7 @@ export const LoginForm = () => {
                 <label>Remember me: </label>
                 <input type="checkbox" {...register("rememberMe")} />
             </div>
-            <input type="submit"/>
+            <Button type={"submit"}>Login</Button>
         </form>
     );
 };
