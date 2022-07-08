@@ -1,5 +1,5 @@
 import {v1} from "uuid";
-import {addPostAC, newPostTextAC} from "../profileReducer/actions";
+import {addPostAC} from "../profileReducer/actions";
 import {profileReducer} from "../profileReducer";
 import {profilePageType} from "../../types";
 
@@ -10,7 +10,6 @@ beforeEach(() => {
             {id: v1(), message: "Hello world!", likes: 3},
             {id: v1(), message: "My first post!", likes: 5},
         ],
-        newPostText: "",
         userProfile: null,
         profileStatus: "",
     };
@@ -18,16 +17,8 @@ beforeEach(() => {
 
 test("should be add new post", () => {
 
-    const newState = profileReducer(initialState, addPostAC());
+    const newState = profileReducer(initialState, addPostAC("New post!!!"));
 
     expect(newState.posts.length).toBe(3);
-    expect(newState.posts[0].message).toBe("");
-})
-
-
-test("should be change newPostText", () => {
-
-    const newState = profileReducer(initialState, newPostTextAC("Hello i am in the train!"));
-
-    expect(newState.newPostText).toBe("Hello i am in the train!");
+    expect(newState.posts[0].message).toBe("New post!!!");
 })

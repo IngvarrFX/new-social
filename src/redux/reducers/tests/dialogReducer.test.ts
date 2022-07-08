@@ -1,7 +1,7 @@
 import {messagePageType} from "../../types";
 import {v1} from "uuid";
 import {dialogsReducer} from "../dialogsReducer";
-import {addMessage, newMessageText} from "../dialogsReducer/actions";
+import {addMessage} from "../dialogsReducer/actions";
 
 
 let initialState: messagePageType;
@@ -30,23 +30,14 @@ beforeEach(() => {
                 ]
             },
         ],
-        newMessage: "",
     };
 })
 
 test("should be add new message", () => {
 
     const id = initialState.dialogs[0].id;
-    const newState = dialogsReducer(initialState, addMessage(id));
+    const newState = dialogsReducer(initialState, addMessage(id, "New Message for friends!"));
 
-    expect(newState.dialogs[0].messages[newState.dialogs[0].messages.length - 1]).toBe("");
+    expect(newState.dialogs[0].messages[newState.dialogs[0].messages.length - 1]).toBe("New Message for friends!");
     expect(newState.dialogs[0].messages.length).toBe(4);
-})
-
-
-test("should be change newMessageText", () => {
-
-    const newState = dialogsReducer(initialState, newMessageText("Hello i am in the train!"));
-
-    expect(newState.newMessage).toBe("Hello i am in the train!");
 })
