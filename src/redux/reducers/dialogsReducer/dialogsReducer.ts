@@ -1,8 +1,7 @@
 import {messagePageType} from "../../types";
 import {v1} from "uuid";
 import {DialogsActionsType} from "./types";
-import {ADD_MESSAGE, NEW_MESSAGE_TEXT} from "./actions";
-
+import {ADD_MESSAGE} from "./actions";
 
 
 const initialState: messagePageType = {
@@ -29,17 +28,13 @@ const initialState: messagePageType = {
             ]
         },
     ],
-    newMessage: "",
 };
 
 
 export const dialogsReducer = (state: messagePageType = initialState, action: DialogsActionsType): messagePageType => {
     switch (action.type) {
         case ADD_MESSAGE: {
-            return {...state, dialogs: state.dialogs.map((dialog)=> dialog.id === action.payload.id ? {...dialog,messages : [...dialog.messages, state.newMessage]} : dialog), newMessage: ""};
-        }
-        case NEW_MESSAGE_TEXT: {
-            return {...state, newMessage : action.payload.value}
+            return {...state, dialogs: state.dialogs.map((dialog)=> dialog.id === action.payload.id ? {...dialog,messages : [...dialog.messages, action.payload.message]} : dialog)};
         }
         default: {
             return state;
