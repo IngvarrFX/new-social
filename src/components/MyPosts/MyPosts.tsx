@@ -6,18 +6,16 @@ import {PostType} from "../../types";
 
 type MyPostsPropsType = {
     posts: PostType[]
-    addPost: () => void
-    newPostText: (value: string) => void
-    value: string
+    addPost: (post: string) => void
 }
 
 export const MyPosts = (props: MyPostsPropsType) => {
-    const {posts, value, addPost, newPostText} = props;
+    const {posts, addPost} = props;
     const postElements = posts.map((post, index) => <Post key={index} text={post.message} likes={post.likes}/>)
     return (
         <div>
             <h2 className={styles.HeaderPosts}>My posts</h2>
-            <NewPost addPost={addPost} newPostText={newPostText} value={value}/>
+            <NewPost addPost={addPost}/>
             {postElements}
         </div>
     );
