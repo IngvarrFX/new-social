@@ -6,9 +6,10 @@ export const NEW_POST_MESSAGE = "NEW_POST_MESSAGE";
 export const SET_USER_PROFILE = "SET_USER_PROFILE";
 export const SET_PROFILE_STATUS = "SET_PROFILE_STATUS";
 
-export const addPostAC = (): AddPostACType => {
+export const addPostAC = (newPost:string): AddPostACType => {
     return {
-        type: ADD_POST
+        type: ADD_POST,
+        newPost
     }
 };
 
