@@ -1,0 +1,16 @@
+.Button {
+    background-color: transparent;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+}
+.Button:hover {
+    transform: scale(1.1);
+}
+
+.text {
+    background-color: white;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
