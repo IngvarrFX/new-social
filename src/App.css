@@ -11,9 +11,10 @@
 }
 
 .App-wrapper-content {
-    height: 100%;
+    min-height: 100vh;
     background-color: blueviolet;
     grid-area: content;
+    padding: 10px;
 }
 
 
