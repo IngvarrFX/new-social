@@ -1,5 +1,7 @@
 import React from "react";
 import styles from "./Post.module.css"
+import {Likes} from "../SvgComponents";
+import {Button} from "../Button";
 
 
 type PostPropsType = {
@@ -15,8 +17,11 @@ export const Post = (props: PostPropsType) => {
                  src="https://w7.pngwing.com/pngs/601/312/png-transparent-social-media-avatar-graphy-digital-media-profile-blue-text-logo.png"
                  alt="avatar"/>
             <div>
-                <span>{text}</span>
-                <span> likes</span>  {likes}
+                <div className={styles.postText}>{text}</div>
+                <div className={styles.likes}>
+                    <Button><Likes/></Button>
+                    <div className={styles.count}>{likes}</div>
+                </div>
             </div>
         </div>
     );
