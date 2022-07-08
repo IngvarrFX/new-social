@@ -8,9 +8,11 @@ import {ProfileActionsType} from "./reducers/profileReducer/types";
 import {DialogsActionsType} from "./reducers/dialogsReducer/types";
 import {UsersActionsType} from "./reducers/usersReducer/types";
 import {authReducer} from "./reducers/authReducer";
+import {appReducer} from "./reducers/appReducer";
 
 
 let rootReducer = combineReducers({
+    app: appReducer,
     profilePage: profileReducer,
     messagePage: dialogsReducer,
     sideBar: sideBarReducer,
