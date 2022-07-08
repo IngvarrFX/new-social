@@ -4,18 +4,16 @@ import {Message} from "./Message";
 
 import styles from "./Dialogs.module.css";
 import {DialogItem} from "./DialogItem";
-import {Textarea} from "../Textarea";
 import {DialogsType} from "../../types";
+import {TextareaForm} from "./DialogsForm";
 
 type DialogsPropsType = {
     dialogs: DialogsType[] | undefined;
-    value: string
-    callBack: () => void
-    newMessage: (text: string) => void
+    callBack: (message: string) => void
 }
 
 export const Dialogs = (props: DialogsPropsType) => {
-    const {dialogs, value, callBack, newMessage} = props;
+    const {dialogs, callBack} = props;
 
 
     const dialogElements = dialogs?.map((dialog: DialogsType, index: number) =>
@@ -37,7 +35,7 @@ export const Dialogs = (props: DialogsPropsType) => {
                 <Routes>
                     {messageElements}
                 </Routes>
-                <Textarea addCallback={callBack} value={value} newText={newMessage}/>
+                <TextareaForm addCallback={callBack}  />
             </div>
 
         </div>
