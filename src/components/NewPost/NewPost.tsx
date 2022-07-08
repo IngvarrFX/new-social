@@ -1,19 +1,17 @@
 import React from "react";
 import styles from "./NewPost.module.css"
-import {Textarea} from "../Textarea";
+import {TextareaForm} from "../Dialogs/DialogsForm";
 
 type NewPostPropsType = {
-    addPost:()=> void
-    newPostText:(value: string)=> void
-    value: string
+    addPost:(post: string)=> void
 }
 
 export const NewPost = (props: NewPostPropsType) => {
-   const { addPost, newPostText, value} = props;
+   const { addPost} = props;
 
     return (
         <div className={styles.Wrapper}>
-            <Textarea addCallback={addPost} value={value} newText={newPostText}/>
+            <TextareaForm addCallback={addPost}/>
         </div>
     );
 };
