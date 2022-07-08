@@ -5,6 +5,7 @@ export type ProfileActionsType = AddPostACType | NewPostTextACType | SetUserProf
 
 export type AddPostACType = {
     type: typeof ADD_POST
+    newPost: string
 };
 
 export type NewPostTextACType = {
