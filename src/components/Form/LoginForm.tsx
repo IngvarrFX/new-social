@@ -1,9 +1,11 @@
 import React from "react";
-import {SubmitHandler, useForm} from "react-hook-form";
+import {FieldValues, SubmitHandler, useForm} from "react-hook-form";
 import styles from "./LoginForm.module.css";
 import {useDispatch} from "react-redux";
 import {loginTC} from "../../redux/reducers/authReducer/thunks";
 import {Button} from "../Button";
+import {yupResolver} from "@hookform/resolvers/yup";
+import * as yup from "yup";
 
 type IFormInput = {
     email: string;
@@ -11,25 +13,47 @@ type IFormInput = {
     rememberMe: string;
 }
 
+const schema = yup.object({
+    email: yup.string().required().email(),
+    password: yup.string().required().min(8),
+}).required();
+
 
 export const LoginForm = () => {
 
     const dispatch = useDispatch<any>();
 
-    const {register, handleSubmit} = useForm<IFormInput>();
-    const onSubmit: SubmitHandler<IFormInput> = data => {
+    const {register, handleSubmit, formState: {errors, touchedFields}} = useForm({
+        resolver: yupResolver(schema)
+    });
+
+    const onSubmit: SubmitHandler<FieldValues> = data => {
         dispatch(loginTC(data))
     }
+    console.log(errors)
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
-            <input {...register("email", {required: true, maxLength: 20})} placeholder="Email" autoComplete="off"/>
-            <input {...register("password", {required: true,})} placeholder="Password" autoComplete="off" type={"password"}/>
-            <div>
-                <label>Remember me: </label>
-                <input type="checkbox" {...register("rememberMe")} />
-            </div>
-            <Button type={"submit"}>Login</Button>
+            <input className={styles.fields} {...register("email", {required: true})}
+                   placeholder="Email"
+                   autoComplete="off"
+                   autoCapitalize={"off"}
+                   type="text"
+            />
+            <div className={styles.errorMessage}>{errors.email && errors.email.message}</div>
+
+            <input className={styles.fields} {...register("password", {required: true,})}
+                   placeholder="Password"
+                   autoComplete="off"
+                   autoCapitalize={"off"}
+                   type={"password"}
+            />
+            <div className={styles.errorMessage}>{errors.password && errors.password.message}</div>
+
+            <label htmlFor="remember">Remember me
+                <input id="remember" type="checkbox" {...register("rememberMe")} /></label>
+
+            <Button disabled={!!errors.password} type={"submit"}>Login</Button>
         </form>
     );
 };
