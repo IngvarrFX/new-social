@@ -14,9 +14,9 @@ export type AuthActionsType = SetUserDataType | SetUserIdType
 export type SetUserDataType = {
     type: typeof SET_USER_DATA
     payload: {
-        userId: number
-        login: string
-        email: string
+        userId: Nullable<number>
+        login: Nullable<string>
+        email: Nullable<string>
         isAuth: boolean
     }
 }
