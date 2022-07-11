@@ -2,7 +2,7 @@ import {ThunkAction} from "redux-thunk";
 import {AppStateType} from "../../redux-store";
 import {AnyAction} from "redux";
 import {authAPI} from "../../../api/api";
-import {setUserData, setUserId} from "./actions";
+import {setUserData} from "./actions";
 import {setAuthorized, setInitialize} from "../appReducer";
 
 
@@ -21,8 +21,7 @@ export const authMeTC = (): ThunkAction<void, AppStateType, unknown, AnyAction> 
 export const loginTC = (data: any): ThunkAction<void, AppStateType, unknown, AnyAction> => (dispatch) => {
     authAPI.login(data).then(res => {
         if (res.resultCode === 0) {
-            const {id} = data.data;
-            dispatch(setUserId(id, true))
+            dispatch(authMeTC())
         }
     })
 }
@@ -30,7 +29,7 @@ export const loginTC = (data: any): ThunkAction<void, AppStateType, unknown, Any
 export const logOutTC = (): ThunkAction<void, AppStateType, unknown, AnyAction> => (dispatch) => {
     authAPI.logOut().then(res => {
         if (res.resultCode === 0) {
-            dispatch(setUserId(null, true))
+            dispatch(setUserData(null, null, null, false))
         }
     })
 }
