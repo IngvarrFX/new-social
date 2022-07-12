@@ -44,12 +44,12 @@ export const Pagination = (props: PaginationPropsType) => {
             <li onClick={onPrevious}>
                 <div className="arrow left"/>
             </li>
-            {paginationRange && paginationRange.map(pageNumber => {
+            {paginationRange && paginationRange.map((pageNumber, index) => {
                 if (pageNumber === DOTS) {
-                    return <li className={styles.dots}>&#8230;</li>;
+                    return <li key={index} className={styles.dots}>&#8230;</li>;
                 }
                 return (
-                    <li className={currentPage === pageNumber ? styles.item + " " + styles.current : styles.item} onClick={() => onPageChange(+pageNumber)}>
+                    <li key={index} className={currentPage === pageNumber ? styles.item + " " + styles.current : styles.item} onClick={() => onPageChange(+pageNumber)}>
                         {pageNumber}
                     </li>
                 );
