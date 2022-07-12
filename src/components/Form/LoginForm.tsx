@@ -25,7 +25,6 @@ export const LoginForm = () => {
     const onSubmit: SubmitHandler<FieldValues> = (data) => {
         dispatch(loginTC({email: data.email, password: data.password, rememberMe: data.rememberMe}))
     }
-    console.log(errors)
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
