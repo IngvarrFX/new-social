@@ -1,5 +1,5 @@
-import {createStore, combineReducers, Store, applyMiddleware} from "redux";
-import thunk from "redux-thunk";
+import { combineReducers,applyMiddleware, legacy_createStore as createStore} from "redux";
+import thunk, {ThunkAction, ThunkDispatch} from "redux-thunk";
 import {profileReducer} from "./reducers/profileReducer";
 import {dialogsReducer} from "./reducers/dialogsReducer";
 import {sideBarReducer} from "./reducers/sideBarReducer";
@@ -7,8 +7,8 @@ import {usersReducer} from "./reducers/usersReducer";
 import {ProfileActionsType} from "./reducers/profileReducer/types";
 import {DialogsActionsType} from "./reducers/dialogsReducer/types";
 import {UsersActionsType} from "./reducers/usersReducer/types";
-import {authReducer} from "./reducers/authReducer";
-import {appReducer} from "./reducers/appReducer";
+import {AuthActionsType, authReducer} from "./reducers/authReducer";
+import {AppActionsType, appReducer} from "./reducers/appReducer";
 
 
 let rootReducer = combineReducers({
@@ -20,12 +20,16 @@ let rootReducer = combineReducers({
     auth: authReducer,
 });
 
-export type AppStateType = ReturnType<typeof rootReducer>;
-export type AppDispatch = ReturnType<typeof store.dispatch>;
 
-export let store: Store<AppStateType, AppActionType> & { dispatch: DispatchType } = createStore(rootReducer, applyMiddleware(thunk));
-type AppActionType = ProfileActionsType | DialogsActionsType | UsersActionsType
-export type DispatchType = (args: AppActionType) => AppActionType;
+export const store = createStore(rootReducer, applyMiddleware(thunk));
+//types
+export type AppStateType = ReturnType<typeof rootReducer>;
+//AppState type
+export type AppDispatch = ThunkDispatch<AppStateType, unknown, AppActionType>;
+//thunks type
+export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, AppStateType, unknown, AppActionType>
+//actions type
+type AppActionType = AppActionsType | AuthActionsType | ProfileActionsType | DialogsActionsType | UsersActionsType;
 
 //@ts-ignore
 window.state = store.getState();
