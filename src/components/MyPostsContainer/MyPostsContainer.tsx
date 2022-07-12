@@ -1,7 +1,7 @@
 import React from "react";
 import {MyPosts} from "../MyPosts";
 import {connect} from "react-redux";
-import {AppStateType, DispatchType} from "../../redux/redux-store";
+import {AppDispatch, AppStateType} from "../../redux/redux-store";
 import {addPostAC} from "../../redux/reducers/profileReducer/actions";
 import {compose} from "redux";
 import {withAuthRedirect} from "../../customHOCs/withAuthRedirect";
@@ -32,7 +32,7 @@ const mapStateToProps = (state: AppStateType) => ({
     posts: state.profilePage.posts,
 })
 
-const mapDispatchToProps = (dispatch: DispatchType) => ({
+const mapDispatchToProps = (dispatch:AppDispatch) => ({
     addPostCallback: (newPost: string) => dispatch(addPostAC(newPost)),
 })
 
