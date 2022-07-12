@@ -1,8 +1,6 @@
-import {ThunkAction} from "redux-thunk";
-import {AppStateType} from "../../redux-store";
-import {AnyAction} from "redux";
+import {AppThunk} from "../../redux-store";
 
 
-export const appTC = (): ThunkAction<void, AppStateType, unknown, AnyAction> => (dispatch) => {
+export const appTC = (): AppThunk => (dispatch) => {
 
 }
