@@ -3,9 +3,9 @@ import styles from "./Header.module.css";
 import {Logo} from "../../icons/Logo";
 import {Nullable} from "../../types/types";
 import {NavLink} from "react-router-dom";
-import {useDispatch} from "react-redux";
 import {logOutTC} from "../../redux/reducers/authReducer/thunks";
 import {Button} from "../Button";
+import {useAppDispatch} from "../../customHooks/useAppDispatch";
 
 type HeaderPropsType = {
     login: Nullable<string>
@@ -14,7 +14,7 @@ type HeaderPropsType = {
 
 export const Header = (props: HeaderPropsType) => {
     const {login, isAuth} = props;
-    const dispatch = useDispatch<any>();
+    const dispatch = useAppDispatch();
     const onClickLogout = () => {
         dispatch(logOutTC());
     }

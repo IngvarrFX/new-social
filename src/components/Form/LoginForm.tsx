@@ -1,17 +1,12 @@
 import React from "react";
 import {FieldValues, SubmitHandler, useForm} from "react-hook-form";
 import styles from "./LoginForm.module.css";
-import {useDispatch} from "react-redux";
 import {loginTC} from "../../redux/reducers/authReducer/thunks";
 import {Button} from "../Button";
 import {yupResolver} from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import {useAppDispatch} from "../../customHooks/useAppDispatch";
 
-type IFormInput = {
-    email: string;
-    password: string;
-    rememberMe: string;
-}
 
 const schema = yup.object({
     email: yup.string().required().email(),
@@ -21,7 +16,7 @@ const schema = yup.object({
 
 export const LoginForm = () => {
 
-    const dispatch = useDispatch<any>();
+    const dispatch = useAppDispatch();
 
     const {register, handleSubmit, formState: {errors, touchedFields}} = useForm({
         resolver: yupResolver(schema)
