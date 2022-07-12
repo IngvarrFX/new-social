@@ -22,8 +22,8 @@ export const LoginForm = () => {
         resolver: yupResolver(schema)
     });
 
-    const onSubmit: SubmitHandler<FieldValues> = data => {
-        dispatch(loginTC(data))
+    const onSubmit: SubmitHandler<FieldValues> = (data) => {
+        dispatch(loginTC({email: data.email, password: data.password, rememberMe: data.rememberMe}))
     }
     console.log(errors)
 
