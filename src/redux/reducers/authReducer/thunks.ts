@@ -2,6 +2,7 @@ import {AppThunk} from "../../redux-store";
 import {authAPI} from "../../../api/api";
 import {setUserData} from "./actions";
 import {setAuthorized, setInitialize} from "../appReducer";
+import {LoginDataType} from "./types";
 
 
 export const authMeTC = (): AppThunk => (dispatch) => {
@@ -16,7 +17,7 @@ export const authMeTC = (): AppThunk => (dispatch) => {
     })
 }
 
-export const loginTC = (data: any): AppThunk => (dispatch) => {
+export const loginTC = (data: LoginDataType): AppThunk => (dispatch) => {
     authAPI.login(data).then(res => {
         if (res.resultCode === 0) {
             dispatch(authMeTC())

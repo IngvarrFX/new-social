@@ -28,3 +28,9 @@ export type SetUserIdType = {
         isAuth: boolean
     }
 }
+
+export type LoginDataType  = {
+    email: string
+    password: string
+    rememberMe: boolean
+}

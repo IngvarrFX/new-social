@@ -1,6 +1,7 @@
 import axios, {AxiosResponse} from "axios";
 import {AuthMeType, FollowingType, UsersResponseType} from "./types";
 import {UserProfileType} from "../redux/types";
+import {LoginDataType} from "../redux/reducers/authReducer/types";
 
 const api = axios.create({
     baseURL: "https://social-network.samuraijs.com/api/1.0/",
@@ -28,7 +29,7 @@ export const authAPI = {
     authMe(): Promise<AuthMeType> {
         return api.get("auth/me").then((res: AxiosResponse) => res.data)
     },
-    login(data: any): Promise<any> {
+    login(data: LoginDataType): Promise<any> {
         return api.post(`auth/login`, data).then((res: AxiosResponse) => res.data)
     },
     logOut(): Promise<any> {
