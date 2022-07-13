@@ -1,6 +1,12 @@
 .wrapper {
 
 }
+.preloader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
 .pagination {
     display: flex;
     align-items: center;
@@ -27,6 +33,7 @@
     display: flex;
     flex-direction: column;
     margin-right: 10px;
+    width: 130px
 }
 
 .avaBlock a:hover {
@@ -48,7 +55,7 @@
 
 .userDescription {
     width: 100%;
-    padding: 30px;
+    padding: 20px;
     border: 1px solid white;
     border-radius: 5px;
     display: flex;
@@ -63,5 +70,25 @@
 }
 
 .rightBlock span {
-    color: gold;
+    color: #003585;
 }
+
+.rightBlock a {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.rightBlock a:hover {
+    color: #149de1;
+}
+
+.avatar {
+ width: 100px;
+}
+
+.avatar img {
+    border: 3px solid #003585;
+    margin-bottom: 10px;
+}
+
+

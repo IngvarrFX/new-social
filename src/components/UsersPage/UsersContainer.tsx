@@ -7,6 +7,7 @@ import {Preloader} from "../Preloader";
 import {followTC, getUsersTC, unFollowTC} from "../../redux/reducers/usersReducer/thunks";
 import {withAuthRedirect} from "../../customHOCs/withAuthRedirect";
 import {compose} from "redux";
+import styles from "./UsersPage.module.css";
 
 type MyState = {}
 
@@ -46,7 +47,8 @@ export class UsersContainer extends React.Component<MapStateToPropsType & MapDis
     render() {
         return (<>
                 {this.props.isFetching
-                    ? <Preloader/>
+
+                    ?<div className={styles.preloader}><Preloader/></div>
                     : <Users
                         users={this.props.users}
                         totalUsersCount={this.props.totalUsersCount}
