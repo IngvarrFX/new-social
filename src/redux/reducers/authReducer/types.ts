@@ -1,5 +1,5 @@
 import {Nullable} from "../../../types/types";
-import {SET_USER_DATA, SET_USER_ID} from "./actions";
+import {SET_ERROR, SET_USER_DATA, SET_USER_ID} from "./actions";
 
 
 export type AuthUserDataType = {
@@ -7,9 +7,10 @@ export type AuthUserDataType = {
     login: Nullable<string>
     email: Nullable<string>
     isAuth: boolean
+    error: Nullable<string>
 }
 
-export type AuthActionsType = SetUserDataType | SetUserIdType
+export type AuthActionsType = SetUserDataType | SetUserIdType | SetErrorType
 
 export type SetUserDataType = {
     type: typeof SET_USER_DATA
@@ -26,6 +27,13 @@ export type SetUserIdType = {
     payload: {
         userId: Nullable<number>
         isAuth: boolean
+    }
+}
+
+export type SetErrorType = {
+    type: typeof SET_ERROR
+    payload: {
+        error: Nullable<string>
     }
 }
 

@@ -5,6 +5,7 @@ const initialState: AuthUserDataType = {
     login: null,
     email: null,
     isAuth: false,
+    error: null
 }
 
 export const authReducer = (state: AuthUserDataType = initialState, action: AuthActionsType): AuthUserDataType => {
@@ -13,7 +14,10 @@ export const authReducer = (state: AuthUserDataType = initialState, action: Auth
             return {...state, ...action.payload}
         }
         case "SET_USER_ID": {
-            return {...state, userId : action.payload.userId, isAuth: action.payload.isAuth}
+            return {...state, userId: action.payload.userId, isAuth: action.payload.isAuth}
+        }
+        case "SET_ERROR": {
+            return {...state, error: action.payload.error}
         }
         default: {
             return state;
