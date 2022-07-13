@@ -12,7 +12,7 @@
 
 .App-wrapper-content {
     min-height: 100vh;
-    background-color: blueviolet;
+    background-color: #feba02;
     grid-area: content;
     padding: 10px;
 }

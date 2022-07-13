@@ -1,16 +1,18 @@
 .container {
     list-style: none;
     display: flex;
+    color: #003585;
+    cursor: pointer;
 }
 .item {
     margin: 0 5px;
 }
 
 .item.current{
-    width: 20px;
-    background-color: antiquewhite;
+    padding: 0 5px;
+    background-color: #149de1;
     display: flex;
     justify-content: center;
     box-sizing: border-box;
-    border-radius: 50px;
+    border-radius: 5px;
 }
