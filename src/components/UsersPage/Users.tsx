@@ -3,6 +3,7 @@ import styles from "./UsersPage.module.css";
 import {UserType} from "../../redux/reducers/usersReducer/types";
 import {NavLink} from "react-router-dom";
 import {Pagination} from "../Pagination";
+import {ProfileDefaultPhoto} from "../SvgComponents";
 
 type UsersPropsType = {
     users: UserType[]
@@ -41,10 +42,13 @@ export const Users = (props: UsersPropsType) => {
                 return <div className={styles.userBlock} key={user.id}>
                     <div className={styles.avaBlock}>
                         <NavLink to={`/profile/${user.id}`}>
-                            <div>
-                                <img className={styles.userPhoto}
-                                     src={user.photos.small ? user.photos.small : "https://w7.pngwing.com/pngs/601/312/png-transparent-social-media-avatar-graphy-digital-media-profile-blue-text-logo.png"}
-                                     alt="avatar"/>
+                            <div className={styles.avatar}>
+                                {user.photos.small || user.photos.small ? <img className={styles.userPhoto}
+                                                                               src={user.photos.small || user.photos.small}
+                                                                               alt="avatar"/>
+                                    : <ProfileDefaultPhoto/>
+
+                                }
                             </div>
                         </NavLink>
                         <button
@@ -54,7 +58,9 @@ export const Users = (props: UsersPropsType) => {
                     <div className={styles.userDescription}>
                         <div className={styles.rightBlock}>
                             <div>
-                                <span>Full name: </span>{user.name}</div>
+                                <span>Full name: </span>
+                                <NavLink to={`/profile/${user.id}`}>{user.name} </NavLink>
+                            </div>
                             <div><span>Status: </span>{user.status}</div>
                         </div>
                         <div className={styles.rightBlock}>
