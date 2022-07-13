@@ -1,14 +1,21 @@
 .Wrapper {
-  margin-bottom: 30px;
+    margin-bottom: 30px;
 }
+
 .Wrapper img {
     width: 100%;
     margin-bottom: 30px;
 }
-.Description{
+
+.Description {
 
 }
+
 .imageBlock {
     display: block;
     width: 200px;
+}
+
+.imageBlock img {
+    border: 6px solid #003585;
 }
